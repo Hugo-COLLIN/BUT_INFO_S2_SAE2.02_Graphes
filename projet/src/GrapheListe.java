@@ -88,7 +88,7 @@ public class GrapheListe implements Graphe {
                 msg.append(this.ensNoeuds.get(i).getAdj().get(j).getDest()
                 + "(" + this.ensNoeuds.get(i).getAdj().get(j).getCout() + ")");
             }
-            msg.append("/n");
+            msg.append("\n");
         }
         return msg.toString();
     }

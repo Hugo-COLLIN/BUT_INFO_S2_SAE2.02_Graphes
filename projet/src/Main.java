@@ -11,5 +11,6 @@ public class Main
         g.ajouterArc("D", "C", 10);
         g.ajouterArc("E", "D", 43);
 
+        System.out.println(g);
     }
 }
