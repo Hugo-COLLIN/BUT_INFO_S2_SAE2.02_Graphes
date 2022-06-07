@@ -1,3 +1,7 @@
+package PACKAGE_NAME;
+
+import PACKAGE_NAME.Arc;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -10,7 +14,7 @@ public class Noeud
     public Noeud (String nomP)
     {
         this.nom = nomP;
-        this.adj = new List<Arc>();
+        this.adj = new ArrayList<Arc>();
     }
 
 
@@ -24,8 +28,6 @@ public class Noeud
         Noeud p = (Noeud) o;
         return this.nom.equals(p.nom);
     }
-
-
 
     //Getters
     public String getNom() {

@@ -1,4 +1,7 @@
-package PACKAGE_NAME;/*
+package PACKAGE_NAME;
+
+import PACKAGE_NAME.Noeud;
+/*
 Classe representant un arc partant d un noeud.
  */
 
