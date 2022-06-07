@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -9,8 +10,8 @@ public class GrapheListe implements Graphe {
      * des objets noeuds qu elle stocke, ainsi qu une liste
      * de noeuds permettant de stocker les arcs.
      */
-    private List<String> ensNom;
-    private List<Noeud> ensNoeuds;
+    private ArrayList<String> ensNom;
+    private ArrayList<Noeud> ensNoeuds;
 
     /**
      * Methode permettant de retourner la liste des noms des noeuds
@@ -31,7 +32,13 @@ public class GrapheListe implements Graphe {
      */
     @Override
     public List<Arc> suivants(String n) {
-        throw new Error("A ecrire");
+        List<Arc> s=new ArrayList<>();
+        for (int i=0; i<this.ensNoeuds.size(); i++) {
+            if (n.equals(ensNoeuds.get(i).getNom())) {
+                s=ensNoeuds.get(i).getAdj();
+            }
+        }
+        return s;
     }
 
     /**
@@ -42,6 +49,19 @@ public class GrapheListe implements Graphe {
      * @param cout cout de cet arc ajoute
      */
     public void ajouterArc(String depart, String destination, double cout) {
+        boolean noeudTrouveDepart=false;
+        boolean noeudTrouveArrive=false;
+        for (int i=0; i<this.ensNom.size(); i++) {
+            if (this.ensNom.get(i).equals(depart)) {
+                noeudTrouveDepart=true;
+            }
+            if (this.ensNom.get(i).equals(destination)) {
+                noeudTrouveArrive=true;
+            }
+        }
+        if ((noeudTrouveArrive)&&(noeudTrouveDepart)) {
+            this.ens
+        }
         throw new Error("A ecrire");
     }
 }
