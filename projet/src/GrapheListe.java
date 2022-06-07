@@ -86,8 +86,8 @@ public class GrapheListe implements Graphe {
     }
 
     //Setters
-    public void setEnsNom(ArrayList<String> ensNom) {
-        this.ensNom = ensNom;
+    public void setNom(String nom) {
+        this.ensNom.add(nom);
     }
 
     public void setEnsNoeuds(ArrayList<Noeud> ensNoeuds) {

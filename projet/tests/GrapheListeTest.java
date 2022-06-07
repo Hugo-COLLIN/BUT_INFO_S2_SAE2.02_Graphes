@@ -1,3 +1,4 @@
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -7,30 +8,35 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class GrapheListeTest {
 
+    GrapheListe g;
+
+    @BeforeEach
+    void init ()
+    {
+        g = new GrapheListe();
+    }
+
     @Test
     void listeNoeuds_ok()
     {
         //Initialisation
-        GrapheListe g = new GrapheListe();
-        g.ajouterArc("A", "B", 3);
+        g.setNom("A");
+        g.setNom("B");
+
+        List<String> comp = new ArrayList<>();
+        comp.add("A");
+        comp.add("B");
 
         //Method
         List<String> res = g.listeNoeuds();
 
         //Test
-        assertEquals(res);
-    }
-
-    @Test
-    void getEnsNoeuds_ok()
-    {
-
+        assertEquals(comp, res, "doivent etre egaux");
     }
 
     @Test
     void grapheList_ok ()
     {
-        GrapheListe g = new GrapheListe();
         assertNotNull(g.listeNoeuds());
         assertNotNull(g.getEnsNoeuds());
     }
@@ -38,7 +44,6 @@ class GrapheListeTest {
     @Test
     void ajouterArc_ok()
     {
-        GrapheListe g = new GrapheListe();
         g.ajouterArc("A", "B", 3);
         List<String> comp = new ArrayList<>();
         comp.add("A");
@@ -52,9 +57,23 @@ class GrapheListeTest {
 
 
     @Test
-    void suivants()
+    void suivants() //TODO
     {
+        //Initialisation
+        g.ajouterArc("A", "B", 3);
+        g.ajouterArc("A", "C", 4);
 
+        List<Arc> comp = g.getEnsNoeuds().get(0).getAdj();
+
+        //Method
+        List<Arc> res = g.suivants("A");
+
+        //Test
+        for (int i = 0 ; i < g.getEnsNoeuds().size() ; i ++)
+            assertEquals(comp.get(i), g.getEnsNoeuds().get(i));
+
+
+        assertEquals(comp, res, "doivent etre egaux");
     }
 
 
