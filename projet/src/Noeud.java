@@ -1,7 +1,3 @@
-package PACKAGE_NAME;
-
-import PACKAGE_NAME.Arc;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -16,12 +12,6 @@ public class Noeud
         this.nom = nomP;
         this.adj = new ArrayList<Arc>();
     }
-
-
-    public boolean equals(Noeud n2) {
-        return this.nom.equals(n2.nom);
-    }
-
 
     @Override
     public boolean equals(Object o) {
