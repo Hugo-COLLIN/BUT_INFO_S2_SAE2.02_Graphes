@@ -12,5 +12,6 @@ public class Main
         g.ajouterArc("E", "D", 43);
 
         System.out.println(g);
+        //System.out.println(g.toGraphviz());
     }
 }
