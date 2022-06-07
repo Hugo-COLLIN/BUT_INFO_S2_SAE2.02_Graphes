@@ -67,7 +67,7 @@ class NoeudTest {
 
     /*
     @Test
-    void getAdj() 
+    void getAdj()
     {
         //Initialisation
         n1 = new Noeud("Noeud1");
