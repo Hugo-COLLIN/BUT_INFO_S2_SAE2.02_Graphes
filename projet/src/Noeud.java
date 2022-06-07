@@ -21,7 +21,8 @@ public class Noeud
 
     @Override
     public boolean equals(Object o) {
-        return this.nom.equals(o);
+        Noeud p = (Noeud) o;
+        return this.nom.equals(p.nom);
     }
 
 
