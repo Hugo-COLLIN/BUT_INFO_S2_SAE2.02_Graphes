@@ -79,4 +79,18 @@ public class GrapheListe implements Graphe {
             ensNoeuds.get(iD).ajouterArc(ensNoeuds.get(iA).getNom(), cout);
         }
     }
+
+    //Getter
+    public ArrayList<Noeud> getEnsNoeuds() {
+        return ensNoeuds;
+    }
+
+    //Setters
+    public void setEnsNom(ArrayList<String> ensNom) {
+        this.ensNom = ensNom;
+    }
+
+    public void setEnsNoeuds(ArrayList<Noeud> ensNoeuds) {
+        this.ensNoeuds = ensNoeuds;
+    }
 }

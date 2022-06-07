@@ -8,9 +8,23 @@ import static org.junit.jupiter.api.Assertions.*;
 class GrapheListeTest {
 
     @Test
-    void listeNoeuds()
+    void listeNoeuds_ok()
     {
+        //Initialisation
         GrapheListe g = new GrapheListe();
+        g.ajouterArc("A", "B", 3);
+
+        //Method
+        List<String> res = g.listeNoeuds();
+
+        //Test
+        assertEquals(res);
+    }
+
+    @Test
+    void getEnsNoeuds_ok()
+    {
+
     }
 
     @Test
@@ -18,11 +32,11 @@ class GrapheListeTest {
     {
         GrapheListe g = new GrapheListe();
         assertNotNull(g.listeNoeuds());
-
+        assertNotNull(g.getEnsNoeuds());
     }
 
     @Test
-    void ajouterArc()
+    void ajouterArc_ok()
     {
         GrapheListe g = new GrapheListe();
         g.ajouterArc("A", "B", 3);
