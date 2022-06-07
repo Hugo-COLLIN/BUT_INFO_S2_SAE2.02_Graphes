@@ -44,13 +44,34 @@ class GrapheListeTest {
     @Test
     void ajouterArc_ok()
     {
+        //Initialisation
         g.ajouterArc("A", "B", 3);
         List<String> comp = new ArrayList<>();
         comp.add("A");
         comp.add("B");
 
+        //Method
         List<String> res = g.listeNoeuds();
 
+        //Test
+        assertEquals(comp, res, "doivent etre egaux");
+    }
+
+    @Test
+    void ajouterArc_listeDbl()
+    {
+        //Initialisation
+        g.ajouterArc("A", "B", 3);
+        g.ajouterArc("A", "C", 4);
+        List<String> comp = new ArrayList<>();
+        comp.add("A");
+        comp.add("B");
+        comp.add("C");
+
+        //Method
+        List<String> res = g.listeNoeuds();
+
+        //Test
         assertEquals(comp, res, "doivent etre egaux");
     }
 

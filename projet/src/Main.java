@@ -13,5 +13,7 @@ public class Main
 
         System.out.println(g);
 
+        //System.out.println(g.toGraphviz());
+
     }
 }
