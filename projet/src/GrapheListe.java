@@ -90,11 +90,11 @@ public class GrapheListe implements Graphe {
         // La premiere boucle d indentation i s occupe des noeuds de depart
         for (int i=0; i<this.ensNoeuds.size(); i++) {
             msg.append(this.ensNoeuds.get(i).getNom()+" -> ");
-            // La deuxieme boucle d indentation j s occupe des noeuds d arrivee et du coup
+            // La deuxieme boucle d indentation j s occupe des noeuds d arrivee et du cout
             // de l arc utilise
             for (int j=0; j<this.ensNoeuds.get(i).getAdj().size(); j++) {
                 msg.append(this.ensNoeuds.get(i).getAdj().get(j).getDest()
-                + "(" + this.ensNoeuds.get(i).getAdj().get(j).getCout() + ")");
+                + "(" + (int) this.ensNoeuds.get(i).getAdj().get(j).getCout() + ") ");
             }
             // saut a la ligne
             msg.append("\n");
