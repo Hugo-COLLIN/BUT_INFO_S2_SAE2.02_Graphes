@@ -19,6 +19,12 @@ public class Noeud
         return this.nom.equals(p.nom);
     }
 
+    public void ajouterArc(String dest, double cout)
+    {
+        Noeud n = new Noeud(dest);
+        this.adj.add(new Arc(n, cout));
+    }
+
     //Getters
     public String getNom() {
         return nom;
