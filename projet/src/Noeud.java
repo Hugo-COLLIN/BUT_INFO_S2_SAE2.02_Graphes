@@ -13,11 +13,34 @@ public class Noeud
         this.adj = new List<Arc>();
     }
 
+
+    public boolean equals(Noeud n2) {
+        return this.nom.equals(n2.nom);
+    }
+
+
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Noeud noeud = (Noeud) o;
-        return Objects.equals(nom, noeud.nom) && Objects.equals(adj, noeud.adj);
+        return this.nom.equals(o);
+    }
+
+
+
+    //Getters
+    public String getNom() {
+        return nom;
+    }
+
+    public List<Arc> getAdj() {
+        return adj;
+    }
+
+    //Setters
+    public void setNom(String nom) {
+        this.nom = nom;
+    }
+
+    public void setAdj(List<Arc> adj) {
+        this.adj = adj;
     }
 }
