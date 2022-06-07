@@ -96,8 +96,7 @@ public class GrapheListe implements Graphe {
                 msg.append(this.ensNoeuds.get(i).getAdj().get(j).getDest()
                 + "(" + this.ensNoeuds.get(i).getAdj().get(j).getCout() + ")");
             }
-            // saut a la ligne
-            msg.append("/n");
+            msg.append("\n");
         }
         return msg.toString();
     }
@@ -108,8 +107,8 @@ public class GrapheListe implements Graphe {
     }
 
     //Setters
-    public void setEnsNom(ArrayList<String> ensNom) {
-        this.ensNom = ensNom;
+    public void setNom(String nom) {
+        this.ensNom.add(nom);
     }
 
     public void setEnsNoeuds(ArrayList<Noeud> ensNoeuds) {
