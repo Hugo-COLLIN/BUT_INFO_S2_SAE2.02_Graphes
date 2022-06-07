@@ -49,19 +49,28 @@ public class GrapheListe implements Graphe {
      * @param cout cout de cet arc ajoute
      */
     public void ajouterArc(String depart, String destination, double cout) {
+        Noeud nD=new Noeud(depart);
+        Noeud nA=new Noeud(destination);
+        ensNoeuds.add(nD);
+        ensNoeuds.add(nA);
+        ensNom.add(depart);
+        ensNom.add(destination);
         boolean noeudTrouveDepart=false;
         boolean noeudTrouveArrive=false;
-        for (int i=0; i<this.ensNom.size(); i++) {
-            if (this.ensNom.get(i).equals(depart)) {
+        int iD=-1;
+        int iA=-1;
+        for (int i=0; i<this.ensNoeuds.size(); i++) {
+            if (this.ensNoeuds.get(i).getNom().equals(depart)) {
                 noeudTrouveDepart=true;
+                iD=i;
             }
-            if (this.ensNom.get(i).equals(destination)) {
+            if (this.ensNoeuds.get(i).getNom().equals(destination)) {
                 noeudTrouveArrive=true;
+                iA=i;
             }
         }
         if ((noeudTrouveArrive)&&(noeudTrouveDepart)) {
-            this.ens
+            ensNoeuds.get(iD).ajouterArc(ensNoeuds.get(iA).getNom(), cout);
         }
-        throw new Error("A ecrire");
     }
 }
