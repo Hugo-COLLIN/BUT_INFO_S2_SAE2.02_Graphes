@@ -13,6 +13,12 @@ public class GrapheListe implements Graphe {
     private ArrayList<String> ensNom;
     private ArrayList<Noeud> ensNoeuds;
 
+    public GrapheListe ()
+    {
+        this.ensNom = new ArrayList<String>();
+        this.ensNoeuds = new ArrayList<Noeud>();
+    }
+
     /**
      * Methode permettant de retourner la liste des noms des noeuds
      * du graphe
