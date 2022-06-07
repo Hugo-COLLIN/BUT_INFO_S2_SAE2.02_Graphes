@@ -80,6 +80,19 @@ public class GrapheListe implements Graphe {
         }
     }
 
+    public String toString() {
+        StringBuilder msg=new StringBuilder("");
+        for (int i=0; i<this.ensNoeuds.size(); i++) {
+            msg.append(this.ensNoeuds.get(i).getNom()+" -> ");
+            for (int j=0; j<this.ensNoeuds.get(i).getAdj().size(); j++) {
+                msg.append(this.ensNoeuds.get(i).getAdj().get(j).getDest()
+                + "(" + this.ensNoeuds.get(i).getAdj().get(j).getCout() + ")");
+            }
+            msg.append("/n");
+        }
+        return msg.toString();
+    }
+
     //Getter
     public ArrayList<Noeud> getEnsNoeuds() {
         return ensNoeuds;
@@ -93,4 +106,5 @@ public class GrapheListe implements Graphe {
     public void setEnsNoeuds(ArrayList<Noeud> ensNoeuds) {
         this.ensNoeuds = ensNoeuds;
     }
+
 }
