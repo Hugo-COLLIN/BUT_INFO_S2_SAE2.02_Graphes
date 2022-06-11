@@ -1,0 +1,11 @@
+@startuml
+digraph G {
+	A -> B [label = 12]
+	A -> D [label = 87]
+	B -> E [label = 11]
+	D -> B [label = 23]
+	D -> C [label = 10]
+	E -> D [label = 43]
+	C -> A [label = 19]
+}
+@enduml
