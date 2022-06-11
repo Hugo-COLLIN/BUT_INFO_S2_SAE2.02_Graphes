@@ -4,49 +4,70 @@ import java.util.List;
 
 /**
  * Classe permettant de representer les donnees associes a un graphe
+ * GrapheListe est definie par l'ensemble des noms
+ * des objets noeuds qu elle stocke, ainsi qu une liste
+ * de noeuds permettant de stocker les arcs.
  */
 public class GrapheListe implements Graphe {
     /**
-     * GrapheListe est definie par l ensemble des noms
-     * des objets noeuds qu elle stocke, ainsi qu une liste
-     * de noeuds permettant de stocker les arcs.
+     * Liste de l'ensemble des noms des objets noeuds stockes
      */
-    private ArrayList<String> ensNom;
-    private ArrayList<Noeud> ensNoeuds;
+    private List<String> ensNom;
 
+    /**
+     * Liste des noeuds permettant de stocker les arcs.
+     */
+    private List<Noeud> ensNoeuds;
+
+    /**
+     * Constructeur qui cree un objet GrapheListe avec ses attributs initialises
+     * comme listes vides
+     */
     public GrapheListe ()
     {
         this.initAtt();
     }
 
+    /**
+     * Constructeur qui cree un objet GrapheListe avec ses attributs initialises
+     * a partir des donnees d'un fichier
+     * @param fichier Chemin ou est localise le fichier
+     * @throws IOException Erreur de lecture du fichier
+     */
     public GrapheListe (String fichier) throws IOException {
         this.initAtt();
         this.lireFichier(fichier);
     }
 
+    /**
+     * Initialise les attributs ensNom et ensNoeuds a des ArrayList vides
+     */
     public void initAtt()
     {
-        this.ensNom = new ArrayList<String>();
-        this.ensNoeuds = new ArrayList<Noeud>();
+        this.ensNom = new ArrayList<>();
+        this.ensNoeuds = new ArrayList<>();
     }
 
-    public void lireFichier (String fichier) throws IOException {
+    /**
+     * Lit les informations contenues dans un fichier pour les stocker
+     * dans les attributs correspondants de GrapheListe
+     * @param fichier Chemin ou est localise le fichier
+     * @throws IOException Erreur de lecture du fichier
+     */
+    public void lireFichier (String fichier) throws IOException
+    {
+        //Creation des flux de lecture pour le fichier
         FileReader fR = new FileReader(fichier);
         BufferedReader bR = new BufferedReader(fR);
 
         String ligne = bR.readLine();
-
         while (ligne != null) {
-            //Séparation de la ligne en tableaux de chaines avec les tabulations
-            String [] part = ligne.split("\t");
-
-            //Ajout de l'arc a partir des chaines recuperees de la ligne du fichiers
-            this.ajouterArc(part[0], part[1], Integer.parseInt(part[2]));
-            //Lecture
-            ligne = bR.readLine();
+            String [] part = ligne.split("\t");                     //Séparation de la ligne en tableaux de chaines avec les tabulations
+            this.ajouterArc(part[0], part[1], Integer.parseInt(part[2])); //Ajout de l'arc a partir des chaines recuperees de la ligne du fichiers
+            ligne = bR.readLine();                                        //Lecture de la ligne suivante
         }
 
-        // Fermeture des flux de fichier
+        // Fermeture des flux de lecture
         bR.close();
         fR.close();
     }
@@ -54,10 +75,11 @@ public class GrapheListe implements Graphe {
     /**
      * Methode permettant de retourner la liste des noms des noeuds
      * du graphe
-     * @return liste de String nom, attribut de la classe GrapheListe
+     * @return L'attribut ensNom
      */
     @Override
-    public List<String> listeNoeuds() {
+    public List<String> listeNoeuds()
+    {
         return this.ensNom;
     }
 
@@ -66,21 +88,21 @@ public class GrapheListe implements Graphe {
      * partant d un noeud
      * @param n noeud pour qui on souhaiterait connaitre
      *          les arcs partant de ce dernier
-     * @return liste d arcs partant de Noeud n
+     * @return liste d'arcs partant de Noeud n
      */
     @Override
     public List<Arc> suivants(String n) {
-        List<Arc> s=new ArrayList<>();
-        for (int i=0; i<this.ensNoeuds.size(); i++) {
-            if (n.equals(ensNoeuds.get(i).getNom())) {
-                s=ensNoeuds.get(i).getAdj();
-            }
-        }
+        List<Arc> s = new ArrayList<>();
+
+        for (Noeud noeud : this.ensNoeuds)
+            if (n.equals(noeud.getNom()))
+                s = noeud.getAdj();
+
         return s;
     }
 
     /**
-     * Methode permettant d ajouter des noeuds et
+     * Methode permettant d'ajouter des noeuds et
      * des arcs a un objet GrapheListe.
      * @param depart nom du noeud de depart
      * @param destination nom du noeud d arrivee
@@ -129,8 +151,10 @@ public class GrapheListe implements Graphe {
         boolean present = false;
 
         for (String nL : ensNom)
-            if (nL.equals(noeudP))
+            if (nL.equals(noeudP)) {
                 present = true;
+                break;
+            }
 
         if (!present)
         {
@@ -140,6 +164,10 @@ public class GrapheListe implements Graphe {
         }
     }
 
+    /**
+     * Redefinition de toString
+     * @return une chaine de caractere representant le graphe
+     */
     public String toString() {
         StringBuilder msg=new StringBuilder("");
         // La premiere boucle s'occupe des noeuds de depart
@@ -157,6 +185,10 @@ public class GrapheListe implements Graphe {
         return msg.toString();
     }
 
+    /**
+     * Cree le code Graphviz permettant de representer le graphe
+     * @return une chaine correspondant au code Graphviz du graphe
+     */
     public String toGraphviz ()
     {
         StringBuilder msg=new StringBuilder("digraph G {\n");
@@ -173,18 +205,20 @@ public class GrapheListe implements Graphe {
         return msg.toString();
     }
 
-    //Getter
-    public ArrayList<Noeud> getEnsNoeuds() {
-        return ensNoeuds;
-    }
-
-    //Setters
+    /**
+     * Methode qui permet d'ajouter un nom a l'attribut ensNom
+     * @param nom nom d'un noeud
+     */
     public void setNom(String nom) {
         this.ensNom.add(nom);
     }
 
-    public void setEnsNoeuds(ArrayList<Noeud> ensNoeuds) {
-        this.ensNoeuds = ensNoeuds;
+    //Getter
+    /**
+     * Getter de l'attribut ensNoeuds
+     * @return l'attribut ensNoeuds
+     */
+    public List<Noeud> getEnsNoeuds() {
+        return ensNoeuds;
     }
-
 }
