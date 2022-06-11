@@ -46,22 +46,48 @@ class GrapheListeTest {
     }
 
     @Test
-    void grapheList_ok ()
+    void grapheListVide_ok ()
     {
         assertNotNull(g.listeNoeuds());
         assertNotNull(g.getEnsNoeuds());
     }
 
     @Test
+    void grapheListParams_ok ()
+    {
+        //Init
+        g.ajouterArc("A", "B", 3);
+        g.ajouterArc("A", "C", 4);
+
+        String [] nomNoeuds = {"A", "B", "C"};
+
+        List<Noeud> objetNoeuds = new ArrayList<Noeud>();
+        objetNoeuds.add(new Noeud("A"));
+        objetNoeuds.add(new Noeud("B"));
+        objetNoeuds.add(new Noeud("C"));
+
+        //Tests
+        assertNotNull(g.listeNoeuds());
+        assertNotNull(g.getEnsNoeuds());
+
+        for (int i = 0 ; i < g.listeNoeuds().size() ; i ++)
+            assertEquals(nomNoeuds[i], g.listeNoeuds().get(i), "doivent etre egaux");
+
+        for (int i = 0 ; i < g.getEnsNoeuds().size() ; i ++)
+            assertEquals(objetNoeuds.get(i), g.getEnsNoeuds().get(i), "doivent etre egaux");
+    }
+
+    @Test
     void ajouterArc_ok()
     {
         //Initialisation
-        g.ajouterArc("A", "B", 3);
+
         List<String> comp = new ArrayList<>();
         comp.add("A");
         comp.add("B");
 
         //Method
+        g.ajouterArc("A", "B", 3);
         List<String> res = g.listeNoeuds();
 
         //Test
@@ -72,14 +98,14 @@ class GrapheListeTest {
     void ajouterArc_listeDbl()
     {
         //Initialisation
-        g.ajouterArc("A", "B", 3);
-        g.ajouterArc("A", "C", 4);
         List<String> comp = new ArrayList<>();
         comp.add("A");
         comp.add("B");
         comp.add("C");
 
         //Method
+        g.ajouterArc("A", "B", 3);
+        g.ajouterArc("A", "C", 4);
         List<String> res = g.listeNoeuds();
 
         //Test
@@ -91,6 +117,25 @@ class GrapheListeTest {
     @Test
     void suivants() //TODO
     {
+        //Init
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         //Initialisation
         g.ajouterArc("A", "B", 3);
         g.ajouterArc("A", "C", 4);
