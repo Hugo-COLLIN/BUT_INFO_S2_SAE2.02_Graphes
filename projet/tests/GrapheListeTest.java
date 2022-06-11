@@ -81,7 +81,6 @@ class GrapheListeTest {
     void ajouterArc_ok()
     {
         //Initialisation
-
         List<String> comp = new ArrayList<>();
         comp.add("A");
         comp.add("B");
@@ -115,42 +114,29 @@ class GrapheListeTest {
 
 
     @Test
-    void suivants() //TODO
+    void suivants_ok ()
     {
         //Init
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        //Initialisation
         g.ajouterArc("A", "B", 3);
         g.ajouterArc("A", "C", 4);
 
-        List<Arc> comp = g.getEnsNoeuds().get(0).getAdj();
+        //List<Arc> attendu1 = g.getEnsNoeuds().get(0).getAdj();
+        List<Arc> attendu2 = new ArrayList<Arc>();
 
-        //Method
+        Noeud nB = new Noeud("B");
+        attendu2.add(new Arc(nB, 3));
+
+        Noeud nC = new Noeud("C");
+        attendu2.add(new Arc(nC, 4));
+
+        //Methode
         List<Arc> res = g.suivants("A");
 
-        //Test
-        for (int i = 0 ; i < g.getEnsNoeuds().size() ; i ++)
-            assertEquals(comp.get(i), g.getEnsNoeuds().get(i));
-
-
-        assertEquals(comp, res, "doivent etre egaux");
+        for (int i = 0 ; i < res.size() ; i ++)
+        {
+            assertEquals(attendu2.get(i).getDest(), res.get(i).getDest(), "destinations doivent etre egales");
+            assertEquals(attendu2.get(i).getCout(), res.get(i).getCout(), "cout doivent etre egaux");
+        }
     }
 
     @Test
