@@ -10,6 +10,17 @@ class GrapheListeTest {
 
     GrapheListe g;
 
+    void initGrapheExemple()
+    {
+        g.ajouterArc("A", "B", 12);
+        g.ajouterArc("A", "D", 87);
+        g.ajouterArc("B", "E", 11);
+        g.ajouterArc("C", "A", 19);
+        g.ajouterArc("D", "B", 23);
+        g.ajouterArc("D", "C", 10);
+        g.ajouterArc("E", "D", 43);
+    }
+
     @BeforeEach
     void init ()
     {
@@ -97,6 +108,47 @@ class GrapheListeTest {
         assertEquals(comp, res, "doivent etre egaux");
     }
 
+    @Test
+    void toString_ok ()
+    {
+        //Init
+        initGrapheExemple();
+
+        String attendu = "A -> B(12) D(87) \n" +
+                "B -> E(11) \n" +
+                "D -> B(23) C(10) \n" +
+                "E -> D(43) \n" +
+                "C -> A(19) \n";
+
+        //Methode
+        String res = g.toString();
+
+        //Test
+        assertEquals(attendu, res, "doivent etre egaux");
+    }
+
+    @Test
+    void toGraphviz_ok ()
+    {
+        //Init
+        initGrapheExemple();
+
+        String attendu = "digraph G {\n" +
+                "\tA -> B [label = 12]\n" +
+                "\tA -> D [label = 87]\n" +
+                "\tB -> E [label = 11]\n" +
+                "\tD -> B [label = 23]\n" +
+                "\tD -> C [label = 10]\n" +
+                "\tE -> D [label = 43]\n" +
+                "\tC -> A [label = 19]\n" +
+                "}";
+
+        //Methode
+        String res = g.toGraphviz();
+
+        //Test
+        assertEquals(attendu, res, "doivent etre egaux");
+    }
 
 
 }
