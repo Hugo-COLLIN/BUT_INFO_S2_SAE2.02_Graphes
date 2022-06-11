@@ -1,3 +1,4 @@
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,16 +16,39 @@ public class GrapheListe implements Graphe {
 
     public GrapheListe ()
     {
+        this.initAtt();
+    }
+
+    public GrapheListe (String fichier) throws IOException {
+        this.initAtt();
+        this.lireFichier(fichier);
+    }
+
+    public void initAtt()
+    {
         this.ensNom = new ArrayList<String>();
         this.ensNoeuds = new ArrayList<Noeud>();
     }
 
-    public GrapheListe (String fichier)
-    {
-        this.ensNom = new ArrayList<String>();
-        this.ensNoeuds = new ArrayList<Noeud>();
+    public void lireFichier (String fichier) throws IOException {
+        FileReader fR = new FileReader(fichier);
+        BufferedReader bR = new BufferedReader(fR);
 
-        //TODO
+        String ligne = bR.readLine();
+
+        while (ligne != null) {
+            //Séparation de la ligne en tableaux de chaines avec les tabulations
+            String [] part = ligne.split("\t");
+
+            //Ajout de l'arc a partir des chaines recuperees de la ligne du fichiers
+            this.ajouterArc(part[0], part[1], Integer.parseInt(part[2]));
+            //Lecture
+            ligne = bR.readLine();
+        }
+
+        // Fermeture des flux de fichier
+        bR.close();
+        fR.close();
     }
 
     /**
