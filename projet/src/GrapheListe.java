@@ -110,18 +110,33 @@ public class GrapheListe implements Graphe {
 
     public String toString() {
         StringBuilder msg=new StringBuilder("");
-        // La premiere boucle d indentation i s occupe des noeuds de depart
-        for (int i=0; i<this.ensNoeuds.size(); i++) {
-            msg.append(this.ensNoeuds.get(i).getNom()+" -> ");
+        // La premiere boucle d indentation i s'occupe des noeuds de depart
+        for (Noeud noeud : this.ensNoeuds) {
+            msg.append(noeud.getNom() + " -> ");
             // La deuxieme boucle d indentation j s occupe des noeuds d arrivee et du cout
-            // de l arc utilise
-            for (int j=0; j<this.ensNoeuds.get(i).getAdj().size(); j++) {
-                msg.append(this.ensNoeuds.get(i).getAdj().get(j).getDest()
-                + "(" + (int) this.ensNoeuds.get(i).getAdj().get(j).getCout() + ") ");
+            // de l'arc utilise
+            for (int j = 0; j < noeud.getAdj().size(); j++) {
+                msg.append(noeud.getAdj().get(j).getDest()
+                        + "(" + (int) noeud.getAdj().get(j).getCout() + ") ");
             }
             // saut a la ligne
             msg.append("\n");
         }
+        return msg.toString();
+    }
+
+    public String toGraphviz ()
+    {
+        StringBuilder msg=new StringBuilder("");
+        // La premiere boucle d indentation i s occupe des noeuds de depart
+        for (Noeud noeud : this.ensNoeuds)
+            for (int j = 0; j < noeud.getAdj().size(); j++)
+                msg.append(
+                        noeud.getNom() + " -> "
+                        + noeud.getAdj().get(j).getDest()
+                        + " [label = " + (int) noeud.getAdj().get(j).getCout() + "]\n"
+                );
+
         return msg.toString();
     }
 
