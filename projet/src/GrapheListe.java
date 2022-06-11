@@ -110,7 +110,7 @@ public class GrapheListe implements Graphe {
 
     public String toString() {
         StringBuilder msg=new StringBuilder("");
-        // La premiere boucle d indentation i s'occupe des noeuds de depart
+        // La premiere boucle s'occupe des noeuds de depart
         for (Noeud noeud : this.ensNoeuds) {
             msg.append(noeud.getNom() + " -> ");
             // La deuxieme boucle d indentation j s occupe des noeuds d arrivee et du cout
@@ -127,15 +127,16 @@ public class GrapheListe implements Graphe {
 
     public String toGraphviz ()
     {
-        StringBuilder msg=new StringBuilder("");
-        // La premiere boucle d indentation i s occupe des noeuds de depart
+        StringBuilder msg=new StringBuilder("digraph G {\n");
         for (Noeud noeud : this.ensNoeuds)
             for (int j = 0; j < noeud.getAdj().size(); j++)
-                msg.append(
-                        noeud.getNom() + " -> "
+                msg.append( "\t"
+                        + noeud.getNom() + " -> "
                         + noeud.getAdj().get(j).getDest()
                         + " [label = " + (int) noeud.getAdj().get(j).getCout() + "]\n"
                 );
+        //Accolade de fin
+        msg.append("}");
 
         return msg.toString();
     }
