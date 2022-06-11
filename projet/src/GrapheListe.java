@@ -54,20 +54,20 @@ public class GrapheListe implements Graphe {
      * @param destination nom du noeud d arrivee
      * @param cout cout de cet arc ajoute
      */
-    public void ajouterArc(String depart, String destination, double cout) {
+    public void ajouterArc(String depart, String destination, double cout)
+    {
         // creation et ajout des noeuds en parametre
-        Noeud nD=new Noeud(depart);
-        Noeud nA=new Noeud(destination);
-        ensNoeuds.add(nD);
-        ensNoeuds.add(nA);
-        ensNom.add(depart);
-        ensNom.add(destination);
+        ajouterNoeud(depart);
+        ajouterNoeud(destination);
+
         // verification que les noeuds existent bien dans les listes
         boolean noeudTrouveDepart=false;
         boolean noeudTrouveArrive=false;
+
         // indice des noeuds (iD = indice depart, iA = indice destination)
         int iD=-1;
         int iA=-1;
+
         // parcours des listes pour verifier la presence des noeuds et leurs positions
         for (int i=0; i<this.ensNoeuds.size(); i++) {
             if (this.ensNoeuds.get(i).getNom().equals(depart)) {
@@ -79,9 +79,32 @@ public class GrapheListe implements Graphe {
                 iA=i;
             }
         }
+
         // si les noeuds existent alors on peut ajouter l arc avec le cout en parametre
         if ((noeudTrouveArrive)&&(noeudTrouveDepart)) {
             ensNoeuds.get(iD).ajouterArc(ensNoeuds.get(iA).getNom(), cout);
+        }
+    }
+
+    /**
+     * Verifie si un noeud identique (meme nom) existe deja dans le graphe. Si c'est un nouveau
+     * noeud, la methode ajoute le nom du noeud dans ensNom, cree un objet noeud correspondant
+     * et l'ajoute dans ensNoeuds.
+     * @param noeudP nom du noeud a ajouter
+     */
+    public void ajouterNoeud(String noeudP)
+    {
+        boolean present = false;
+
+        for (String nL : ensNom)
+            if (nL.equals(noeudP))
+                present = true;
+
+        if (!present)
+        {
+            ensNom.add(noeudP);
+            Noeud n = new Noeud(noeudP);
+            ensNoeuds.add(n);
         }
     }
 
