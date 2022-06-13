@@ -44,3 +44,8 @@ public class BellmanFord
         return valeur;
     }
 }
+
+// String tmpNoeud=suivants().getDest();
+//tmpVal=v.getValeur(tmpNoeud);
+//if ((v.getValeur(g.listeNoeuds().get(i)) + g.listeNoeuds().suivants().get(j).getCout()) > tmpVal)
+//	v.setValeur(tmpVal, g.listeNoueds().get(i))
