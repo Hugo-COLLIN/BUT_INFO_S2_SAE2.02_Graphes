@@ -1,4 +1,6 @@
+import representation.Arc;
 import representation.Graphe;
+import representation.Noeud;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,10 +22,76 @@ public class Dijkstra implements Algorithme
                 q.add(nomNoeud);
             }
 
-        while (q.size() != 0)
-        {
+        while (q.size() != 0) {
+            double minVal = Double.MAX_VALUE;
+            double tmpVal;
+
+            String nomNoeudDistMin = depart;
+
+            for (int i = 0; i < q.size(); i++) {
+                for (int j = 0; j < g.suivants(g.listeNoeuds().get(i)).size(); j++) {
+                    String tmpNoeud = g.suivants(g.listeNoeuds().get(i)).get(j).getDest();
+                    tmpVal = valeur.getValeur(tmpNoeud);
+
+                    if (tmpVal < minVal) {
+                        minVal = tmpVal;
+                        nomNoeudDistMin = tmpNoeud;
+                    }
+                }
+            }
+
+            q.remove(nomNoeudDistMin);
+
+            List<Arc> arcsNoeudTraite = g.suivants(nomNoeudDistMin);
+            String destNoeudTraite;
+            double coutNoeudTraite;
+            for (int j = 0; j < arcsNoeudTraite.size(); j++)
+            {
+                destNoeudTraite = arcsNoeudTraite.get(j).getDest();
+                coutNoeudTraite = arcsNoeudTraite.get(j).getCout();
+
+                double tmpNewVal = valeur.getValeur(destNoeudTraite) + g.suivants(destNoeudTraite).get(j).getCout();
+
+                if (coutNoeudTraite > tmpNewVal)
+                    valeur.setValeur(destNoeudTraite, tmpNewVal);
+            }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            /*
             double tmp;
-            for (String s : q);
+            Noeud tmpN;
+            String tmpS;
+            for (int i = 0 ; i < g.listeNoeuds().size() ; i ++)
+            {
+                for (Arc lA : g.suivants(g.listeNoeuds().get(i)))
+                    lA.getDest()
+                tmpS = g.listeNoeuds().get(i)
+            }
+
+             */
         }
 
 
