@@ -29,7 +29,15 @@ public class BellmanFord
             {
                 for (int j = 0 ; j < g.suivants(g.listeNoeuds().get(i)).size() ; j ++)
                 {
-                    g.suivants(g.listeNoeuds().get(i)).get(j).getCout()
+                    String tmpNoeud = g.suivants(g.listeNoeuds().get(i)).get(j).getDest();
+                    double tmpVal= valeur.getValeur(tmpNoeud);
+                    if ((valeur.getValeur(g.listeNoeuds().get(i)) + g.suivants(g.listeNoeuds().get(i)).get(j).getCout()) > tmpVal)
+                    {
+                        valeur.setValeur(g.listeNoeuds().get(i), tmpVal);
+                        isPtFixe = false;
+                    }
+
+                    //g.suivants(g.listeNoeuds().get(i)).get(j).getCout()
                 }
 
                     /*for (String s : g.listeNoeuds())
