@@ -22,7 +22,7 @@ public class BellmanFord
         }
 
         //etapes
-        boolean isPtFixe;
+        boolean isPtFixe = false;
         do {
             isPtFixe = true;
             for (int i = 0 ; i < g.listeNoeuds().size() ; i ++)
@@ -30,10 +30,11 @@ public class BellmanFord
                 for (int j = 0 ; j < g.suivants(g.listeNoeuds().get(i)).size() ; j ++)
                 {
                     String tmpNoeud = g.suivants(g.listeNoeuds().get(i)).get(j).getDest();
-                    double tmpVal= valeur.getValeur(tmpNoeud);
-                    if ((valeur.getValeur(g.listeNoeuds().get(i)) + g.suivants(g.listeNoeuds().get(i)).get(j).getCout()) > tmpVal)
+                    double tmpActualVal= valeur.getValeur(tmpNoeud);
+                    double tmpNewVal = valeur.getValeur(g.listeNoeuds().get(i)) + g.suivants(g.listeNoeuds().get(i)).get(j).getCout();
+                    if (tmpNewVal < tmpActualVal)
                     {
-                        valeur.setValeur(g.listeNoeuds().get(i), tmpVal);
+                        valeur.setValeur(tmpNoeud, tmpNewVal);
                         valeur.setParent(tmpNoeud, g.listeNoeuds().get(i));
                         isPtFixe = false;
                     }
