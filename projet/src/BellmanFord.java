@@ -7,7 +7,7 @@ import java.util.Objects;
 
 public class BellmanFord
 {
-    Valeur resoudre(Graphe g, String depart)
+    public Valeur resoudre(Graphe g, String depart)
     {
         Valeur valeur = new Valeur();
         //g = (GrapheListe)g;
@@ -34,16 +34,13 @@ public class BellmanFord
                     if ((valeur.getValeur(g.listeNoeuds().get(i)) + g.suivants(g.listeNoeuds().get(i)).get(j).getCout()) > tmpVal)
                     {
                         valeur.setValeur(g.listeNoeuds().get(i), tmpVal);
+                        valeur.setParent(tmpNoeud, g.listeNoeuds().get(i));
                         isPtFixe = false;
                     }
 
                     //g.suivants(g.listeNoeuds().get(i)).get(j).getCout()
                 }
 
-                    /*for (String s : g.listeNoeuds())
-                {
-                    if (valeur.getValeur(s) > valeur.getValeur(g.listeNoeuds().get(i) + ))
-                }*/
             }
         }
         while (!isPtFixe);
