@@ -1,3 +1,5 @@
+import representation.Graphe;
+
 public class BellmanFord
 {
     Valeur resoudre(Graphe g, String depart)

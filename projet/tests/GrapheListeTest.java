@@ -1,7 +1,9 @@
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import representation.Arc;
+import representation.GrapheListe;
+import representation.Noeud;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -56,14 +58,14 @@ class GrapheListeTest {
     /*
     @Test
     void grapheListParams_ok () throws IOException {
-        GrapheListe g2 = new GrapheListe("resources/Graphe_boucle.txt");
+        representation.GrapheListe g2 = new representation.GrapheListe("resources/Graphe_boucle.txt");
 
         String [] nomNoeuds = {"A", "B", "C"};
 
-        List<Noeud> objetNoeuds = new ArrayList<Noeud>();
-        objetNoeuds.add(new Noeud("A"));
-        objetNoeuds.add(new Noeud("B"));
-        objetNoeuds.add(new Noeud("C"));
+        List<representation.Noeud> objetNoeuds = new ArrayList<representation.Noeud>();
+        objetNoeuds.add(new representation.Noeud("A"));
+        objetNoeuds.add(new representation.Noeud("B"));
+        objetNoeuds.add(new representation.Noeud("C"));
 
         //Tests
         assertNotNull(g1.listeNoeuds());
@@ -88,10 +90,10 @@ class GrapheListeTest {
 
         String [] nomNoeuds = {"A", "B", "C"};
 
-        List<Noeud> objetNoeuds = new ArrayList<Noeud>();
-        objetNoeuds.add(new Noeud("A"));
-        objetNoeuds.add(new Noeud("B"));
-        objetNoeuds.add(new Noeud("C"));
+        List<representation.Noeud> objetNoeuds = new ArrayList<representation.Noeud>();
+        objetNoeuds.add(new representation.Noeud("A"));
+        objetNoeuds.add(new representation.Noeud("B"));
+        objetNoeuds.add(new representation.Noeud("C"));
 
         //Tests
         assertNotNull(g1.listeNoeuds());
@@ -149,7 +151,7 @@ class GrapheListeTest {
         g1.ajouterArc("A", "B", 3);
         g1.ajouterArc("A", "C", 4);
 
-        //List<Arc> attendu1 = g.getEnsNoeuds().get(0).getAdj();
+        //List<representation.Arc> attendu1 = g.getEnsNoeuds().get(0).getAdj();
         List<Arc> attendu2 = new ArrayList<Arc>();
 
         Noeud nB = new Noeud("B");

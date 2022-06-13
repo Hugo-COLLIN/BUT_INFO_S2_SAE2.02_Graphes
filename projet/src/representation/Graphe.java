@@ -1,3 +1,5 @@
+package representation;
+
 import java.util.List;
 
 public interface Graphe {

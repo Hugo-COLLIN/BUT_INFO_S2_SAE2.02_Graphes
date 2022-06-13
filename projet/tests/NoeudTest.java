@@ -1,8 +1,5 @@
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
-import java.util.ArrayList;
-import java.util.List;
+import representation.Noeud;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -70,12 +67,12 @@ class NoeudTest {
     void getAdj()
     {
         //Initialisation
-        n1 = new Noeud("Noeud1");
+        n1 = new representation.Noeud("Noeud1");
         n1.ajouterArc("Noeud2", 3);
-        List<Arc> tmp = new ArrayList<>();
-        Arc a = new Arc("Noeud2", 3)
+        List<representation.Arc> tmp = new ArrayList<>();
+        representation.Arc a = new representation.Arc("Noeud2", 3)
 
-        List<Arc> res = n1.getAdj();
+        List<representation.Arc> res = n1.getAdj();
 
         //Test
         assertEquals("Noeud1", res, "doit etre la meme chaine");

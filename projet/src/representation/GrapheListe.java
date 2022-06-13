@@ -1,10 +1,12 @@
+package representation;
+
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Classe permettant de representer les donnees associes a un graphe
- * GrapheListe est definie par l'ensemble des noms
+ * representation.GrapheListe est definie par l'ensemble des noms
  * des objets noeuds qu elle stocke, ainsi qu une liste
  * de noeuds permettant de stocker les arcs.
  */
@@ -20,7 +22,7 @@ public class GrapheListe implements Graphe {
     private List<Noeud> ensNoeuds;
 
     /**
-     * Constructeur qui cree un objet GrapheListe avec ses attributs initialises
+     * Constructeur qui cree un objet representation.GrapheListe avec ses attributs initialises
      * comme listes vides
      */
     public GrapheListe ()
@@ -29,7 +31,7 @@ public class GrapheListe implements Graphe {
     }
 
     /**
-     * Constructeur qui cree un objet GrapheListe avec ses attributs initialises
+     * Constructeur qui cree un objet representation.GrapheListe avec ses attributs initialises
      * a partir des donnees d'un fichier
      * @param fichier Chemin ou est localise le fichier
      * @throws IOException Erreur de lecture du fichier
@@ -50,7 +52,7 @@ public class GrapheListe implements Graphe {
 
     /**
      * Lit les informations contenues dans un fichier pour les stocker
-     * dans les attributs correspondants de GrapheListe
+     * dans les attributs correspondants de representation.GrapheListe
      * @param fichier Chemin ou est localise le fichier
      * @throws IOException Erreur de lecture du fichier
      */
@@ -88,7 +90,7 @@ public class GrapheListe implements Graphe {
      * partant d un noeud
      * @param n noeud pour qui on souhaiterait connaitre
      *          les arcs partant de ce dernier
-     * @return liste d'arcs partant de Noeud n
+     * @return liste d'arcs partant de representation.Noeud n
      */
     @Override
     public List<Arc> suivants(String n) {
@@ -103,7 +105,7 @@ public class GrapheListe implements Graphe {
 
     /**
      * Methode permettant d'ajouter des noeuds et
-     * des arcs a un objet GrapheListe.
+     * des arcs a un objet representation.GrapheListe.
      * @param depart nom du noeud de depart
      * @param destination nom du noeud d arrivee
      * @param cout cout de cet arc ajoute

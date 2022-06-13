@@ -1,6 +1,7 @@
+package representation;
+
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 public class Noeud
 {
@@ -27,7 +28,7 @@ public class Noeud
 
     /**
      * redefinition de la methode
-     * equals(Object o) dans la classe Noeud qui specifie que deux noeuds sont egaux
+     * equals(Object o) dans la classe representation.Noeud qui specifie que deux noeuds sont egaux
      * si et seulement si leurs noms sont egaux (on suppose ainsi que le nom d’un noeud
      * identifie le noeud de maniere unique).
      * @param o
