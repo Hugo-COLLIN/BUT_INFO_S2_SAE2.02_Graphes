@@ -5,7 +5,7 @@ import representation.GrapheListe;
 import java.util.List;
 import java.util.Objects;
 
-public class BellmanFord
+public class BellmanFord implements Algorithme
 {
     public Valeur resoudre(Graphe g, String depart)
     {
@@ -14,15 +14,21 @@ public class BellmanFord
 
         //init
         valeur.setValeur(depart, 0);
+        /*
+        //List<Arc> lA = g.suivants(g.listeNoeuds().get(i))
         for (int i = 0; i < g.listeNoeuds().size() ; i ++)
-        {
             if (!depart.equals(g.listeNoeuds().get(i)))
                 valeur.setValeur(g.listeNoeuds().get(i), Double.MAX_VALUE);
-            //List<Arc> lA = g.suivants(g.listeNoeuds().get(i))
-        }
+
+         */
+
+        for (String nomNoeud : g.listeNoeuds())
+            if (!depart.equals(nomNoeud))
+                valeur.setValeur(nomNoeud, Double.MAX_VALUE);
+
 
         //etapes
-        boolean isPtFixe = false;
+        boolean isPtFixe;
         do {
             isPtFixe = true;
             for (int i = 0 ; i < g.listeNoeuds().size() ; i ++)
