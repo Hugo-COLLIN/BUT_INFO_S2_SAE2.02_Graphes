@@ -1,7 +1,4 @@
-import java.util.ArrayList;
-import java.util.Map;
-import java.util.TreeMap;
-import java.util.List;
+import java.util.*;
 
 /**
  * Classe fournie, permet de stocker des valeurs associées au noeud et des parents
@@ -87,5 +84,35 @@ public class Valeur {
         return res;
 
     }
+
+    //Methodes rajoutees
+    public List<String> calculerChemin(String destination)
+    {
+        List<String> res = new ArrayList<>();
+        String parentTmp = destination;
+
+        while (parentTmp != null)
+        {
+            res.add(parentTmp);
+            parentTmp = this.getParent(parentTmp);
+        }
+        Collections.reverse(res);
+        return res;
+    }
+
+    /*
+    parentTmp = cheminParentRec (res, parentTmp);
+
+    public String cheminParentRec (List<String> liste, String parentTmp)
+    {
+        if (parentTmp != null)
+        {
+            String res = this.getParent(parentTmp);
+        }
+
+        cheminParentRec(res);
+    }
+
+     */
 
 }
