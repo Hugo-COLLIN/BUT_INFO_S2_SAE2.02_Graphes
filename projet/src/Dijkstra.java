@@ -54,20 +54,25 @@ public class Dijkstra implements Algorithme {
             String nomNoeudDistMin = depart;
             int idNoeud=-1;
 
+
             for (int i = 0; i < q.size(); i++) {
-                /**for (int j = 0; j < g.listeNoeuds().size(); j++) {
+                double minVal = Double.MAX_VALUE;
+                /*for (int j = 0; j < g.listeNoeuds().size(); j++) {
                     if (g.listeNoeuds().get(j)==q.get(i)) {
                         idNoeud=j;
                     }
                 }
                 valeur.setValeur(q.get(i), g.suivants(g.listeNoeuds().get(idNoeud)).get().getCout())+;
                 */
-                double minVal = Double.MAX_VALUE;
+
                 if (valeur.getValeur(q.get(i)) < minVal) {
                     minVal = valeur.getValeur(q.get(i));
                     nomNoeudDistMin = q.get(i);
                 }
-
+            }
+            q.remove(nomNoeudDistMin);
+            for (int i = 0 ; i < q.size() ; i ++)
+            {
                 List<Arc> arcsNoeudTraite = g.suivants(nomNoeudDistMin);
                 String destNoeudTraite;
                 double coutNoeudTraite;
@@ -80,8 +85,6 @@ public class Dijkstra implements Algorithme {
                     if (coutNoeudTraite > tmpNewVal)
                         valeur.setValeur(destNoeudTraite, tmpNewVal);
                 }
-
-                q.remove(nomNoeudDistMin);
             }
         }
     return valeur;
