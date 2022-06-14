@@ -9,16 +9,13 @@ public class MainExperimentation
     {
         Graphe g = new GrapheListe("resources/Graphe_exemple1.txt");
 
-        //Bellman Ford
+        System.out.println("\n------------------\nBellman Ford :\n------------------");
         BellmanFord bF = new BellmanFord();
         Valeur v1 = bF.resoudre(g, "A");
-        //System.out.println(v1);
-        //System.out.println(v1.valeur);
-        //System.out.println(v1.parent);
 
         //Dijkstra
-        BellmanFord dj = new BellmanFord();
-        Valeur v2 = dj.resoudre(g, "A");
+        //Dijkstra dj = new Dijkstra();
+        //Valeur v2 = dj.resoudre(g, "A");
 
 
     }
