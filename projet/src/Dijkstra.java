@@ -64,28 +64,29 @@ public class Dijkstra implements Algorithme {
                 }
                 valeur.setValeur(q.get(i), g.suivants(g.listeNoeuds().get(idNoeud)).get().getCout())+;
                 */
-
-                if (valeur.getValeur(q.get(i)) < minVal) {
+                String tmp = q.get(i);
+                double tmpNewVal = valeur.getValeur(g.listeNoeuds().get(i)) + g.suivants(g.listeNoeuds().get(i)).get(j).getCout();
+                if (valeur.getValeur(tmp) < minVal) {
                     minVal = valeur.getValeur(q.get(i));
                     nomNoeudDistMin = q.get(i);
                 }
             }
+
             q.remove(nomNoeudDistMin);
-            for (int i = 0 ; i < q.size() ; i ++)
-            {
-                List<Arc> arcsNoeudTraite = g.suivants(nomNoeudDistMin);
-                String destNoeudTraite;
-                double coutNoeudTraite;
-                for (int j = 0; j < arcsNoeudTraite.size(); j++) {
-                    destNoeudTraite = arcsNoeudTraite.get(j).getDest();
-                    coutNoeudTraite = arcsNoeudTraite.get(j).getCout();
 
-                    double tmpNewVal = valeur.getValeur(destNoeudTraite) + g.suivants(destNoeudTraite).get(j).getCout();
+            List<Arc> arcsNoeudTraite = g.suivants(nomNoeudDistMin);
+            String destNoeudTraite;
+            double coutNoeudTraite;
+            for (int j = 0; j < arcsNoeudTraite.size(); j++) {
+                destNoeudTraite = arcsNoeudTraite.get(j).getDest();
+                coutNoeudTraite = arcsNoeudTraite.get(j).getCout();
 
-                    if (coutNoeudTraite > tmpNewVal)
-                        valeur.setValeur(destNoeudTraite, tmpNewVal);
-                }
+                double tmpNewVal = valeur.getValeur(destNoeudTraite) + g.suivants(destNoeudTraite).get(j).getCout();
+
+                if (coutNoeudTraite > tmpNewVal)
+                    valeur.setValeur(destNoeudTraite, tmpNewVal);
             }
+
         }
     return valeur;
     }
