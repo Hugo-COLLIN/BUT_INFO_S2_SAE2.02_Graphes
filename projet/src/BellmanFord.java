@@ -30,6 +30,8 @@ public class BellmanFord implements Algorithme
         //etapes
         boolean isPtFixe;
         do {
+            System.out.println(valeur);
+
             isPtFixe = true;
             for (int i = 0 ; i < g.listeNoeuds().size() ; i ++)
             {
@@ -44,10 +46,8 @@ public class BellmanFord implements Algorithme
                         valeur.setParent(tmpNoeud, g.listeNoeuds().get(i));
                         isPtFixe = false;
                     }
-
-                    //g.suivants(g.listeNoeuds().get(i)).get(j).getCout()
+                    //System.out.println(i + "\t" + j + "\t" + valeur.valeur + "\t" + valeur.parent);
                 }
-
             }
         }
         while (!isPtFixe);
