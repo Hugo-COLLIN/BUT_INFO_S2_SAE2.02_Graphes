@@ -1,14 +1,62 @@
 import representation.Arc;
 import representation.Graphe;
-import representation.Noeud;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class Dijkstra implements Algorithme {
+public class Dijkstra implements Algorithme
+{
+    public Valeur resoudre(Graphe g, String depart) {
+        Valeur val = new Valeur();
+        List<String> nomsNoeudsParcours = new ArrayList<>();
+
+        //init
+        val.setValeur(depart, 0);
+        nomsNoeudsParcours.add(depart);
+        for (String nomNoeud : g.listeNoeuds())
+            if (!depart.equals(nomNoeud)) {
+                val.setValeur(nomNoeud, Double.MAX_VALUE);
+                nomsNoeudsParcours.add(nomNoeud);
+            }
+        System.out.println(val);
+
+        //Recherche du chemin le plus court
+        double distMin, d;
+        String nomNoeudDistMin = depart;
+        List<Arc> arcsSuivants = g.suivants(nomNoeudDistMin);
+        while (!nomsNoeudsParcours.isEmpty()) {
+            for (Arc arcSuivant : arcsSuivants) {
+                distMin = val.getValeur(nomNoeudDistMin) + arcSuivant.getCout();
+                String nomNoeudSuivant = arcSuivant.getDest();
+                if (val.getValeur(nomNoeudSuivant) > distMin) {
+                    val.setValeur(nomNoeudSuivant, distMin);
+                    val.setParent(nomNoeudSuivant, nomNoeudDistMin);
+                }
+            }
+            nomsNoeudsParcours.remove(nomNoeudDistMin);
 
 
-    /**
+            if (nomsNoeudsParcours.isEmpty())
+                break;
+            else {
+                nomNoeudDistMin = nomsNoeudsParcours.get(nomsNoeudsParcours.size() - 1);
+                d = val.getValeur(nomNoeudDistMin);
+                for (int i = 0; i < nomsNoeudsParcours.size() - 1; i++)
+                    if (d > val.getValeur(nomsNoeudsParcours.get(i))) {
+                        nomNoeudDistMin = nomsNoeudsParcours.get(i);
+                        d = val.getValeur(nomNoeudDistMin);
+                    }
+            }
+            //if (nomNoeudDistMin == null) break;
+            arcsSuivants = g.suivants(nomNoeudDistMin);
+            System.out.println(val);
+        }
+        return val;
+    }
+
+
+
+    /*
     Entr´ees :
     G un graphe orient´e avec une pond´eration (poids) positive des arcs
     A un sommet (d´epart) de G
@@ -34,61 +82,4 @@ public class Dijkstra implements Algorithme {
     Fin Tant que
     Fin
      */
-
-    @Override
-    public Valeur resoudre(Graphe g, String depart) {
-        Valeur valeur = new Valeur();
-        List<String> q = new ArrayList<>();
-
-        //init
-        valeur.setValeur(depart, 0);
-        for (String nomNoeud : g.listeNoeuds())
-            if (!depart.equals(nomNoeud)) {
-                valeur.setValeur(nomNoeud, Double.MAX_VALUE);
-                q.add(nomNoeud);
-            }
-
-        while (q.size() != 0) {
-            double tmpVal;
-
-            String nomNoeudDistMin = depart;
-            int idNoeud=-1;
-
-
-            for (int i = 0; i < q.size(); i++) {
-                double minVal = Double.MAX_VALUE;
-                /*for (int j = 0; j < g.listeNoeuds().size(); j++) {
-                    if (g.listeNoeuds().get(j)==q.get(i)) {
-                        idNoeud=j;
-                    }
-                }
-                valeur.setValeur(q.get(i), g.suivants(g.listeNoeuds().get(idNoeud)).get().getCout())+;
-                */
-                String tmp = q.get(i);
-                double tmpNewVal = valeur.getValeur(g.listeNoeuds().get(i)) + g.suivants(g.listeNoeuds().get(i)).get(j).getCout();
-                if (valeur.getValeur(tmp) < minVal) {
-                    minVal = valeur.getValeur(q.get(i));
-                    nomNoeudDistMin = q.get(i);
-                }
-            }
-
-            q.remove(nomNoeudDistMin);
-
-            List<Arc> arcsNoeudTraite = g.suivants(nomNoeudDistMin);
-            String destNoeudTraite;
-            double coutNoeudTraite;
-            for (int j = 0; j < arcsNoeudTraite.size(); j++) {
-                destNoeudTraite = arcsNoeudTraite.get(j).getDest();
-                coutNoeudTraite = arcsNoeudTraite.get(j).getCout();
-
-                double tmpNewVal = valeur.getValeur(destNoeudTraite) + g.suivants(destNoeudTraite).get(j).getCout();
-
-                if (coutNoeudTraite > tmpNewVal)
-                    valeur.setValeur(destNoeudTraite, tmpNewVal);
-            }
-
-        }
-    return valeur;
-    }
-
 }

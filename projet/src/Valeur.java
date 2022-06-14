@@ -91,11 +91,14 @@ public class Valeur {
         List<String> res = new ArrayList<>();
         String parentTmp = destination;
 
-        while (parentTmp != null)
+        //do
+            while (parentTmp != null) //!parentTmp.equals(destination)
         {
             res.add(parentTmp);
             parentTmp = this.getParent(parentTmp);
         }
+        //while (parentTmp != null && !parentTmp.equals(destination));
+
         Collections.reverse(res);
         return res;
     }
