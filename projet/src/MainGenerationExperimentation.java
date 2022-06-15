@@ -5,7 +5,7 @@ public class MainGenerationExperimentation
     public static void main(String[] args) {
         GrapheListe g = new GrapheListe();
         //g.genererGrapheV1(1000);
-        g.genererGrapheV2(10);
+        g.genererGrapheV2(20);
         System.out.println(g.toGraphviz());
     }
 }
