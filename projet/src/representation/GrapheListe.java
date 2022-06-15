@@ -209,10 +209,6 @@ public class GrapheListe implements Graphe {
 
     public void genererGrapheV2(int taille)
     {
-        //Random rand = new Random();
-        //this.ajouterNoeud("1");
-        //this.ajouterNoeud(String.valueOf(taille));
-
         for (int i = 1 ; i <= taille ; i ++)
             this.ajouterNoeud(String.valueOf(i));
 
@@ -220,29 +216,38 @@ public class GrapheListe implements Graphe {
         while (!grapheFini)
         {
             grapheFini = true;
+
             int coutArc = (int)Math.round(Math.random() * 100);
-            //String noeudDepart = this.ensNom.get((int)Math.round(Math.random() * (this.ensNoeuds.size() - 1)));
             String noeudDepart, noeudArrivee;
-            //do noeudDepart = String.valueOf(Math.round(Math.random() * (taille - 1)) + 1); while (arcContient(noeudDepart));
-            //do noeudArrivee = String.valueOf(Math.round(Math.random() * (taille - 1)) + 1); while (arcContient(noeudArrivee));
-            noeudDepart = String.valueOf(Math.round(Math.random() * (taille - 1)) + 1);
-            noeudArrivee = String.valueOf(Math.round(Math.random() * (taille - 1)) + 1);
+            do {
+                noeudDepart = String.valueOf(Math.round(Math.random() * (taille - 1)) + 1);
+                noeudArrivee = String.valueOf(Math.round(Math.random() * (taille - 1)) + 1);
+            }
+            while (dejaRelie(noeudDepart, noeudArrivee) || noeudDepart.equals(noeudArrivee)); //N'autorise ni plusieurs fois la meme route, ni les arcs d'un noeud sur lui-meme
 
             this.ajouterArc(noeudDepart, noeudArrivee, coutArc);
 
             for (int i = 1 ; i <= taille ; i ++)
-                if (!arcRelie(String.valueOf(i))) {
+                if (arcVide(String.valueOf(i)) || !arcContient(String.valueOf(i))) { //if (!arcVide || !arc
                     grapheFini = false;
                     break;
                 }
-
-            //System.out.println(noeudDepart + "\t" + noeudArrivee + "\t" + grapheFini);
         }
     }
 
     private boolean arcVide(String noeudP)
     {
         return suivants(noeudP).size() == 0;
+    }
+
+    private boolean dejaRelie (String nomNoeudDepartP, String nomNoeudArriveeP)
+    {
+        for (Noeud n : this.ensNoeuds)
+            if (n.getNom().equals(nomNoeudDepartP))
+                for (Arc a : n.getAdj())
+                    if (a.getDest().equals(nomNoeudArriveeP))
+                        return true;
+        return false;
     }
 
     private boolean arcRelie(String noeudP)
