@@ -176,18 +176,26 @@ public class GrapheListe implements Graphe {
     public void genererGraphe(int taille)
     {
         //Random rand = new Random();
-        //this.ajouterNoeud("1");
+        this.ajouterNoeud("1");
         //this.ajouterNoeud(String.valueOf(taille));
 
         boolean tousLesNoeuds = false;
-        while (!arcContient("1") && !arcContient(String.valueOf(taille)) && this.ensNoeuds.size() != taille)
+        while (!tousLesNoeuds)
         {
             tousLesNoeuds = true;
-            String noeudDepart = this.ensNom.get((int)Math.round(Math.random() * (this.ensNoeuds.size() - 1)));
-            String noeudArrivee = String.valueOf(Math.round(Math.random() * taille));
             int coutArc = (int)Math.round(Math.random() * 100);
+            String noeudDepart = this.ensNom.get((int)Math.round(Math.random() * (this.ensNoeuds.size() - 1)));
+            String noeudArrivee;
+            do noeudArrivee = String.valueOf(Math.round(Math.random() * (taille - 1)) + 1);
+                while (arcContient(noeudArrivee));
 
             this.ajouterArc(noeudDepart, noeudArrivee, coutArc);
+
+            for (int i = 1 ; i < taille ; i ++)
+                if (!arcContient(String.valueOf(i)))
+                    tousLesNoeuds = false;
+
+            System.out.println(noeudDepart + "\t" + noeudArrivee + "\t" + tousLesNoeuds);
         }
     }
 
