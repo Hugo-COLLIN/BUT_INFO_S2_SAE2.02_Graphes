@@ -3,7 +3,6 @@ package representation;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 /**
  * Classe permettant de representer les donnees associes a un graphe
@@ -173,9 +172,8 @@ public class GrapheListe implements Graphe {
     /**
      * Question 24 :
      */
-    public void genererGraphe(int taille)
+    public void genererGrapheV1(int taille)
     {
-        //Random rand = new Random();
         this.ajouterNoeud("1");
         //this.ajouterNoeud(String.valueOf(taille));
 
@@ -191,7 +189,7 @@ public class GrapheListe implements Graphe {
 
             this.ajouterArc(noeudDepart, noeudArrivee, coutArc);
 
-            for (int i = 1 ; i < taille ; i ++)
+            for (int i = 1 ; i <= taille ; i ++) //Atest
                 if (!arcContient(String.valueOf(i)))
                     tousLesNoeuds = false;
 
@@ -207,6 +205,63 @@ public class GrapheListe implements Graphe {
                 if (a.getDest().equals(noeudP))
                     return true;
         return false;
+    }
+
+    public void genererGrapheV2(int taille)
+    {
+        //Random rand = new Random();
+        //this.ajouterNoeud("1");
+        //this.ajouterNoeud(String.valueOf(taille));
+
+        for (int i = 1 ; i <= taille ; i ++)
+            this.ajouterNoeud(String.valueOf(i));
+
+        boolean grapheFini = false;
+        while (!grapheFini)
+        {
+            grapheFini = true;
+            int coutArc = (int)Math.round(Math.random() * 100);
+            //String noeudDepart = this.ensNom.get((int)Math.round(Math.random() * (this.ensNoeuds.size() - 1)));
+            String noeudDepart, noeudArrivee;
+            //do noeudDepart = String.valueOf(Math.round(Math.random() * (taille - 1)) + 1); while (arcContient(noeudDepart));
+            //do noeudArrivee = String.valueOf(Math.round(Math.random() * (taille - 1)) + 1); while (arcContient(noeudArrivee));
+            noeudDepart = String.valueOf(Math.round(Math.random() * (taille - 1)) + 1);
+            noeudArrivee = String.valueOf(Math.round(Math.random() * (taille - 1)) + 1);
+
+            this.ajouterArc(noeudDepart, noeudArrivee, coutArc);
+
+            for (int i = 1 ; i <= taille ; i ++)
+                if (!arcRelie(String.valueOf(i))) {
+                    grapheFini = false;
+                    break;
+                }
+
+            //System.out.println(noeudDepart + "\t" + noeudArrivee + "\t" + grapheFini);
+        }
+    }
+
+    private boolean arcVide(String noeudP)
+    {
+        return suivants(noeudP).size() == 0;
+    }
+
+    private boolean arcRelie(String noeudP)
+    {
+        boolean res = false;
+        for (Arc a : suivants(noeudP))
+        {
+            String nomNoeudSuivant = a.getDest();
+            res = !nomNoeudSuivant.equals(noeudP);
+            if (res) break;
+            /*if (!a.getDest().equals(noeudP)) {
+                res = true;
+                break;
+            }*/
+            //if (res) break;
+        }
+
+
+        return res;
     }
 
 

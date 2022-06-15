@@ -1,12 +1,11 @@
-import representation.Graphe;
 import representation.GrapheListe;
 
 public class MainGenerationExperimentation
 {
     public static void main(String[] args) {
         GrapheListe g = new GrapheListe();
-        g.genererGraphe(1000);
-        //System.out.println(g);
+        //g.genererGrapheV1(1000);
+        g.genererGrapheV2(100);
         System.out.println(g.toGraphviz());
     }
 }
