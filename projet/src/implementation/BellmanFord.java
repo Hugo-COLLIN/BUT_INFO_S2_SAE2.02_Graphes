@@ -1,9 +1,6 @@
-import representation.Arc;
-import representation.Graphe;
-import representation.GrapheListe;
+package implementation;
 
-import java.util.List;
-import java.util.Objects;
+import representation.Graphe;
 
 public class BellmanFord implements Algorithme
 {

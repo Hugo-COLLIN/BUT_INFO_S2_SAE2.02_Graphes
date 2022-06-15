@@ -1,12 +1,15 @@
+package implementation;
+
 import representation.GrapheListe;
 
+import java.io.IOException;
 import java.util.List;
 
 public class MainDijkstra
 {
-    public static void main(String[] args) {
-        //        GrapheListe g = new GrapheListe("resources/Graphe_exemple1.txt");
-        GrapheListe g = new GrapheListe();
+    public static void main(String[] args) throws IOException {
+        GrapheListe g = new GrapheListe("resources/Graphe_exemple1.txt");
+        /*GrapheListe g = new GrapheListe();
 
         g.ajouterArc("A", "B", 12);
         g.ajouterArc("A", "D", 87);
@@ -15,6 +18,7 @@ public class MainDijkstra
         g.ajouterArc("D", "B", 23);
         g.ajouterArc("D", "C", 10);
         g.ajouterArc("E", "D", 43);
+                 */
 
         //System.out.println(g);
 

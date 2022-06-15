@@ -1,3 +1,5 @@
+package implementation;
+
 import representation.Graphe;
 
 public interface Algorithme

@@ -1,3 +1,5 @@
+import implementation.BellmanFord;
+import implementation.Valeur;
 import representation.Graphe;
 import representation.GrapheListe;
 
@@ -14,9 +16,9 @@ public class MainExperimentation
         Valeur v1 = bF.resoudre(g, "A");
         //System.out.println(v1.calculerChemin("E"));
 
-        //Dijkstra
-        //Dijkstra dj = new Dijkstra();
-        //Valeur v2 = dj.resoudre(g, "A");
+        //implementation.Dijkstra
+        //implementation.Dijkstra dj = new implementation.Dijkstra();
+        //implementation.Valeur v2 = dj.resoudre(g, "A");
 
 
     }
