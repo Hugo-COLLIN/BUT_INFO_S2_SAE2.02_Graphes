@@ -6,6 +6,7 @@ import representation.GrapheListe;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Objects;
 
 public class MainExperimentation
 {
@@ -22,14 +23,14 @@ public class MainExperimentation
 
     public static void main(String[] args) throws IOException
     {
-        String [] fichiers = {"resources/Graphe_exemple1.txt", "resources/Graphe_boucle.txt"};
-
-        //File f = new File("resource");
+        //String [] fichiers = {"resources/Graphe_exemple1.txt", "resources/Graphe_boucle.txt"};
+        String pathName = "resources/graphes_exemples/";
+        File repertoire = new File(pathName);
 
         StringBuilder tabRecap = new StringBuilder("TpsApproche\t\t\t\t\t\tbF:E\t\tDj:E\n");
-        for (String fichier : fichiers) {
-            Graphe g = new GrapheListe(fichier);
-            tabRecap.append(fichier + "\t");
+        for (File fichier : Objects.requireNonNull(repertoire.listFiles())) {
+            Graphe g = new GrapheListe(pathName + fichier.getName());
+            tabRecap.append(fichier.getName() + "\t");
 
             //Bellman-Ford
             System.out.println("\n------------------\nBellman Ford :\n------------------");
