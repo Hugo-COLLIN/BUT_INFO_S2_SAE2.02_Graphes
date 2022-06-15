@@ -9,7 +9,7 @@ import java.util.List;
 public class MainDijkstra
 {
     public static void main(String[] args) throws IOException {
-        String [] fichiers ={"resources/Graphe_exemple1.txt", "resources/Graphe_boucle.txt"};
+        String [] fichiers = {"resources/Graphe_exemple1.txt", "resources/Graphe_exemple2.txt", "resources/Graphe_boucle.txt"};
 
         for (String fichier : fichiers)
         {

@@ -3,6 +3,7 @@ package representation;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 /**
  * Classe permettant de representer les donnees associes a un graphe
@@ -20,6 +21,9 @@ public class GrapheListe implements Graphe {
      * Liste des noeuds permettant de stocker les arcs.
      */
     private List<Noeud> ensNoeuds;
+
+    private static final String [] LISTE_NOMS_NOEUDS =
+            {"A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"};
 
     /**
      * Constructeur qui cree un objet representation.GrapheListe avec ses attributs initialises
@@ -148,7 +152,7 @@ public class GrapheListe implements Graphe {
      * et l'ajoute dans ensNoeuds.
      * @param noeudP nom du noeud a ajouter
      */
-    public void ajouterNoeud(String noeudP)
+    private void ajouterNoeud(String noeudP)
     {
         boolean present = false;
 
@@ -165,6 +169,38 @@ public class GrapheListe implements Graphe {
             ensNoeuds.add(n);
         }
     }
+
+    /**
+     * Question 24 :
+     */
+    public void genererGraphe(int taille)
+    {
+        //Random rand = new Random();
+        //this.ajouterNoeud("1");
+        //this.ajouterNoeud(String.valueOf(taille));
+
+        boolean tousLesNoeuds = false;
+        while (!arcContient("1") && !arcContient(String.valueOf(taille)) && this.ensNoeuds.size() != taille)
+        {
+            tousLesNoeuds = true;
+            String noeudDepart = this.ensNom.get((int)Math.round(Math.random() * (this.ensNoeuds.size() - 1)));
+            String noeudArrivee = String.valueOf(Math.round(Math.random() * taille));
+            int coutArc = (int)Math.round(Math.random() * 100);
+
+            this.ajouterArc(noeudDepart, noeudArrivee, coutArc);
+        }
+    }
+
+
+    private boolean arcContient (String noeudP)
+    {
+        for (Noeud n : this.ensNoeuds)
+            for (Arc a : n.getAdj())
+                if (a.getDest().equals(noeudP))
+                    return true;
+        return false;
+    }
+
 
     /**
      * Redefinition de toString
