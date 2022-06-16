@@ -5,6 +5,9 @@ import representation.GrapheListe;
 import java.io.IOException;
 import java.util.List;
 
+/**
+ * Main permettant d'utiliser Dijkstra pour resoudre un probleme de plus court chemin
+ */
 public class MainDijkstra
 {
     public static void main(String[] args) throws IOException {

@@ -4,6 +4,9 @@ import representation.GrapheListe;
 
 import java.util.List;
 
+/**
+ * Main permettant d'utiliser Bellman-Ford pour resoudre un probleme de plus court chemin
+ */
 public class MainBellmanFord
 {
     public static void main(String[] args) {
