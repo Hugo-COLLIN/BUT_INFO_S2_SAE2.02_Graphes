@@ -44,15 +44,45 @@ public class MainExperimentationGenere
     }
 
     public static void main(String[] args) throws IOException {
-        /*
+
         Scanner sc = new Scanner(System.in);
-        System.out.println("Nombre de noeuds : ");
+        System.out.print("Nombre de noeuds : ");
         int nbNoeuds = sc.nextInt();
-        System.out.println("Nombre d'essais : ");
+        System.out.print("Nombre d'essais : ");
         int nbEssais = sc.nextInt();
-*/
+
+        double moyBF = 0, moyDj = 0, moyRatio = 0;
 
         StringBuilder tabRecap = new StringBuilder("NbNoeuds\tTpsGene\tTpsBF\tTpsDj\tRatioAlgos\n");
+        for (int i = 1 ; i <= nbEssais ; i ++)
+        {
+            tabRecap.append(i).append("\t\t\t");
+            geneGraphe(tabRecap, nbNoeuds);
+
+            //Bellman-Ford
+            BellmanFord bF = new BellmanFord();
+            Valeur v1 = bF.resoudre(g, "1");
+            double bFTps = calculVal(tabRecap, v1);
+            moyBF += bFTps;
+
+            //Dijkstra
+            Dijkstra dj = new Dijkstra();
+            Valeur v2 = dj.resoudre(g, "1");
+            double djTps = calculVal(tabRecap, v2);
+            moyDj += djTps;
+
+            double ratio = djTps / bFTps;
+            moyRatio += ratio;
+            tabRecap.append(ratio).append("\t\n");
+        }
+
+        moyBF /= nbEssais;
+        moyDj /= nbEssais;
+        moyRatio /= nbEssais;
+
+        tabRecap.append("Tot :\t\t\t---\t").append(moyBF).append("\t").append(moyDj).append("\t").append(moyRatio);
+        System.out.println(tabRecap);
+/*
         for (int i = 1 ; i <= 1000 ; i ++)
         {
             tabRecap.append(i + "\t\t\t");
@@ -61,13 +91,11 @@ public class MainExperimentationGenere
 
 
             //Bellman-Ford
-            //System.out.println("\n------------------\nBellman Ford :\n------------------");
             BellmanFord bF = new BellmanFord();
             Valeur v1 = bF.resoudre(g, "1");
             double bFTps = calculVal(tabRecap, v1);
 
             //Dijkstra
-            //System.out.println("\n------------------\nDijkstra :\n------------------");
             Dijkstra dj = new Dijkstra();
             Valeur v2 = dj.resoudre(g, "1");
             double djTps = calculVal(tabRecap, v2);
@@ -85,7 +113,7 @@ public class MainExperimentationGenere
                     i += 95;
             System.out.println(tabRecap);
         }
-
+*/
 
 
     }
