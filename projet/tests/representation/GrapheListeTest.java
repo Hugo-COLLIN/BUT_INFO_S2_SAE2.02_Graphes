@@ -13,6 +13,9 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 class GrapheListeTest {
+    /**
+     * Classe de tests de la classe GrapheListe verifiant ses differentes methodes
+     */
 
     GrapheListe g1;
 
@@ -33,6 +36,10 @@ class GrapheListeTest {
         g1 = new GrapheListe();
     }
 
+    /**
+     * Verifie que la methode listeNoeuds retourne bien la liste de noeuds d un graphe
+     */
+
     @Test
     void listeNoeuds_ok()
     {
@@ -50,6 +57,10 @@ class GrapheListeTest {
         //Test
         assertEquals(comp, res, "doivent etre egaux");
     }
+
+    /**
+     * Verifie qu un graphe est vide
+     */
 
     @Test
     void grapheListVide_ok ()
@@ -111,6 +122,10 @@ class GrapheListeTest {
 
      */
 
+    /**
+     * Verifie qu un arc a bien ete ajoute
+     */
+
     @Test
     void ajouterArc_ok()
     {
@@ -126,6 +141,10 @@ class GrapheListeTest {
         //Test
         assertEquals(comp, res, "doivent etre egaux");
     }
+
+    /**
+     * Verifie qu un arc a bien ete ajoute, en verifiant avec une liste de String
+     */
 
     @Test
     void ajouterArc_listeDbl()
@@ -145,7 +164,9 @@ class GrapheListeTest {
         assertEquals(comp, res, "doivent etre egaux");
     }
 
-
+    /**
+     * verifie que la methode suivants retourne une liste d arcs correcte a ce qui est attendu
+     */
 
     @Test
     void suivants_ok ()
@@ -173,6 +194,10 @@ class GrapheListeTest {
         }
     }
 
+    /**
+     * Verifie que la methode toString retourne le resultat attendu
+     */
+
     @Test
     void toString_ok ()
     {
@@ -191,6 +216,10 @@ class GrapheListeTest {
         //Test
         assertEquals(attendu, res, "doivent etre egaux");
     }
+
+    /**
+     * Verifie que la methode toGraphViz renvoie bien le resultat attendu
+     */
 
     @Test
     void toGraphviz_ok ()
@@ -214,6 +243,11 @@ class GrapheListeTest {
         //Test
         assertEquals(attendu, res, "doivent etre egaux");
     }
+
+    /**
+     * Verifie qu un graphe a bien ete cree a partir d un fichier texte 
+     * @throws IOException
+     */
 
     @Test
     void lireFichier_test () throws IOException {
