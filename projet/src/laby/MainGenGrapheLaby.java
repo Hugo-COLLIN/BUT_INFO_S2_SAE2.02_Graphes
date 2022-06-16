@@ -1,20 +1,30 @@
 package laby;
 
+import implementation.BellmanFord;
+import implementation.Valeur;
 import representation.GrapheListe;
 
+import java.io.File;
 import java.io.IOException;
 
 public class MainGenGrapheLaby
 {
     public static void main(String[] args) throws IOException
     {
-        Labyrinthe labyrinthe = new Labyrinthe("resources/labySimple/laby0.txt");
-        GrapheListe g = new GrapheListe();
+        Labyrinthe labyrinthe;
+        GrapheListe g;
+        File rep = new File("resources/labySimple/");
 
-        g = labyrinthe.genererGraphe();
+        for (File fichier : rep.listFiles())
+        {
+            labyrinthe = new Labyrinthe(fichier.getPath());
+            g = labyrinthe.genererGraphe();
+            //System.out.println(g);
+            System.out.println(g.toGraphviz());
 
-        System.out.println(g);
-        System.out.println(g.toGraphviz());
+            BellmanFord bF = new BellmanFord();
+            Valeur v = bF.resoudre(g, "\"(1,1)\"");
 
+        }
     }
 }

@@ -213,6 +213,6 @@ public class Labyrinthe {
 
     private String creerNomNoeud (int x, int y)
     {
-        return "(" + x + "," + y + ")";
+        return "\"(" + x + "," + y + ")\"";
     }
 }
