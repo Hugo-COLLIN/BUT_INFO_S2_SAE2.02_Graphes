@@ -1,5 +1,7 @@
 import implementation.Dijkstra;
 import implementation.Valeur;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import representation.GrapheListe;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -8,8 +10,10 @@ class DijkstraTest {
 
     GrapheListe g1;
 
+    @BeforeEach
     void initGrapheExemple()
     {
+        g1 = new GrapheListe();
         g1.ajouterArc("A", "B", 12);
         g1.ajouterArc("A", "D", 87);
         g1.ajouterArc("B", "E", 11);
@@ -19,6 +23,7 @@ class DijkstraTest {
         g1.ajouterArc("E", "D", 43);
     }
 
+    @Test
     void resoudre_Test()
     {
         // initialisation
@@ -36,7 +41,6 @@ class DijkstraTest {
         // Appel de la methode
         Dijkstra dj = new Dijkstra();
         Valeur test= dj.resoudre(g1, "A");
-        // a mettre en static?
 
         // Test de la methode
         assertEquals(v, test, "Les valeurs doivent etre identiques");
