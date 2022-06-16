@@ -1,3 +1,5 @@
+package representation;
+
 import org.junit.jupiter.api.Test;
 import representation.Noeud;
 

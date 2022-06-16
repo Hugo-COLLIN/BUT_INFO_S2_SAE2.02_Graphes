@@ -1,3 +1,5 @@
+package implementation;
+
 import implementation.BellmanFord;
 import implementation.Valeur;
 import org.junit.jupiter.api.BeforeAll;
