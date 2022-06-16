@@ -44,6 +44,15 @@ class BellmanFordTest {
         Valeur test = bf.resoudre(g1, "A");
 
         // Test de la methode
-        assertEquals(v, test, "Les valeurs doivent etre identiques");
+        assertEquals(v.getValeur("A"), test.getValeur("A"), "Les valeurs doivent etre identiques");
+        assertEquals(v.getValeur("B"), test.getValeur("B"), "Les valeurs doivent etre identiques");
+        assertEquals(v.getValeur("C"), test.getValeur("C"), "Les valeurs doivent etre identiques");
+        assertEquals(v.getValeur("D"), test.getValeur("D"), "Les valeurs doivent etre identiques");
+        assertEquals(v.getValeur("E"), test.getValeur("E"), "Les valeurs doivent etre identiques");
+
+        assertEquals(v.getParent("B"), test.getParent("B"), "Les parents doivent etre identiques");
+        assertEquals(v.getParent("C"), test.getParent("C"), "Les parents doivent etre identiques");
+        assertEquals(v.getParent("D"), test.getParent("D"), "Les parents doivent etre identiques");
+        assertEquals(v.getParent("E"), test.getParent("E"), "Les parents doivent etre identiques");
     }
 }
