@@ -5,7 +5,6 @@ package representation;
  * Un objet de type Arc est decrit par le nom du noeud destination de l arc
  *  et le cout correspondant au poids(cout) de l arc
  */
-
 public class Arc
 {
     /**
@@ -37,7 +36,6 @@ public class Arc
     }
 
     //Getters
-
     /**
      * Getter de destination
      * @return une destination de type String
@@ -53,5 +51,4 @@ public class Arc
     public double getCout() {
         return this.cout;
     }
-
 }

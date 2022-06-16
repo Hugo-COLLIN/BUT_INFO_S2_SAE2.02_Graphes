@@ -168,44 +168,11 @@ public class GrapheListe implements Graphe
         }
     }
 
+
     /**
-     * Question 24 :
+     * Permet de generer un graphe fortement connecte
+     * @param taille taille du graphe a generer
      */
-    public void genererGrapheV1(int taille)
-    {
-        this.ajouterNoeud("1");
-        //this.ajouterNoeud(String.valueOf(taille));
-
-        boolean tousLesNoeuds = false;
-        while (!tousLesNoeuds)
-        {
-            tousLesNoeuds = true;
-            int coutArc = (int)Math.round(Math.random() * 100);
-            String noeudDepart = this.ensNom.get((int)Math.round(Math.random() * (this.ensNoeuds.size() - 1)));
-            String noeudArrivee;
-            do noeudArrivee = String.valueOf(Math.round(Math.random() * (taille - 1)) + 1);
-                while (arcContient(noeudArrivee));
-
-            this.ajouterArc(noeudDepart, noeudArrivee, coutArc);
-
-            for (int i = 1 ; i <= taille ; i ++) //Atest
-                if (!arcContient(String.valueOf(i)))
-                    tousLesNoeuds = false;
-
-            //System.out.println(noeudDepart + "\t" + noeudArrivee + "\t" + tousLesNoeuds);
-        }
-    }
-
-
-    private boolean arcContient (String noeudP)
-    {
-        for (Noeud n : this.ensNoeuds)
-            for (Arc a : n.getAdj())
-                if (a.getDest().equals(noeudP))
-                    return true;
-        return false;
-    }
-
     public void genererGrapheV2(int taille)
     {
         for (int i = 1 ; i <= taille ; i ++)
@@ -229,21 +196,47 @@ public class GrapheListe implements Graphe
             }
             while (dejaRelie(noeudDepart, noeudArrivee) || noeudDepart.equals(noeudArrivee)); //N'autorise ni plusieurs fois la meme route, ni les arcs d'un noeud sur lui-meme
 
-            this.ajouterArc(noeudDepart, noeudArrivee, coutArc);
+            this.ajouterArc(noeudDepart, noeudArrivee, coutArc); //Cree l'arc
 
+            //La boucle se relance tant que tous les noeuds ne sont pas antecedents ou successeurs d'un autre noeud
             for (int i = 1 ; i <= taille ; i ++)
-                if (arcVide(String.valueOf(i)) || !arcContient(String.valueOf(i))) { //if (!arcVide || !arc
+                if (arcVide(String.valueOf(i)) || !arcContient(String.valueOf(i))) {
                     grapheFini = false;
                     break;
                 }
         }
     }
 
+    /**
+     * Verifie si un noeud est le successeur d'un arc du graphe
+     * @param noeudP noeud a trouver comme successeur
+     * @return booleen representant l'etat de successeur du noeud
+     */
+    private boolean arcContient (String noeudP)
+    {
+        for (Noeud n : this.ensNoeuds)
+            for (Arc a : n.getAdj())
+                if (a.getDest().equals(noeudP))
+                    return true;
+        return false;
+    }
+
+    /**
+     * Teste si un noeud a un attribut arc qui est vide
+     * @param noeudP noeud a tester
+     * @return si le noeud possede des arcs
+     */
     private boolean arcVide(String noeudP)
     {
         return suivants(noeudP).size() == 0;
     }
 
+    /**
+     * Teste si un noeud est deja relie a un autre
+     * @param nomNoeudDepartP noeud de depart
+     * @param nomNoeudArriveeP noeud d'arrivee
+     * @return si l'arc existe deja
+     */
     private boolean dejaRelie (String nomNoeudDepartP, String nomNoeudArriveeP)
     {
         for (Noeud n : this.ensNoeuds)
@@ -254,35 +247,16 @@ public class GrapheListe implements Graphe
         return false;
     }
 
-    private boolean arcRelie(String noeudP)
-    {
-        boolean res = false;
-        for (Arc a : suivants(noeudP))
-        {
-            String nomNoeudSuivant = a.getDest();
-            res = !nomNoeudSuivant.equals(noeudP);
-            if (res) break;
-            /*if (!a.getDest().equals(noeudP)) {
-                res = true;
-                break;
-            }*/
-            //if (res) break;
-        }
-
-
-        return res;
-    }
-
 
     /**
      * Redefinition de toString
      * @return une chaine de caractere representant le graphe
      */
     public String toString() {
-        StringBuilder msg=new StringBuilder("");
+        StringBuilder msg=new StringBuilder();
         // La premiere boucle s'occupe des noeuds de depart
         for (Noeud noeud : this.ensNoeuds) {
-            msg.append(noeud.getNom() + " -> ");
+            msg.append(noeud.getNom()).append(" -> ");
             // La deuxieme boucle d indentation j s occupe des noeuds d arrivee et du cout
             // de l'arc utilise
             for (int j = 0; j < noeud.getAdj().size(); j++) {
