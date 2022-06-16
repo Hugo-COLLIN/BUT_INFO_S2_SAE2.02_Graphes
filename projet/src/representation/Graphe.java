@@ -2,6 +2,9 @@ package representation;
 
 import java.util.List;
 
+/**
+ * Interface permettant de creer des objets de type Graphe
+ */
 public interface Graphe {
 
     /**
