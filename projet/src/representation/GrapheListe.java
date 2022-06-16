@@ -5,12 +5,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Classe permettant de representer les donnees associes a un graphe
- * representation.GrapheListe est definie par l'ensemble des noms
+ * Classe implementant l'interface Graphe et permettant
+ * de representer les donnees associes a un graphe
+ * GrapheListe est definie par l'ensemble des noms
  * des objets noeuds qu elle stocke, ainsi qu une liste
  * de noeuds permettant de stocker les arcs.
  */
-public class GrapheListe implements Graphe {
+public class GrapheListe implements Graphe
+{
     /**
      * Liste de l'ensemble des noms des objets noeuds stockes
      */
