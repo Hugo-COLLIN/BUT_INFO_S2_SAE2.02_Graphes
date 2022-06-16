@@ -25,7 +25,6 @@ public class MainExperimentation
 
     public static void main(String[] args) throws IOException
     {
-        //String [] fichiers = {"resources/Graphe_exemple1.txt", "resources/Graphe_boucle.txt"};
         String pathName = "resources/graphes_exemples/";
         File repertoire = new File(pathName);
 
@@ -38,32 +37,13 @@ public class MainExperimentation
             System.out.println("\n------------------\nBellman Ford :\n------------------");
             BellmanFord bF = new BellmanFord();
             Valeur v1 = bF.resoudre(g, "A");
-
             calculVal(tabRecap, v1);
-
-            /*
-            debtTps = System.nanoTime();
-            v1.calculerChemin("E");
-            finTps = System.nanoTime();
-            tabRecap.append(finTps - debtTps);
-            tabRecap.append("\t");
-*/
 
             //Dijkstra
             System.out.println("\n------------------\nDijkstra :\n------------------");
             Dijkstra dj = new Dijkstra();
             Valeur v2 = dj.resoudre(g, "A");
-
             calculVal(tabRecap, v2);
-
-            /*
-            debtTps = System.nanoTime();
-            v2.calculerChemin("E");
-            finTps = System.nanoTime();
-            tabRecap.append(finTps - debtTps);
-            tabRecap.append("\t");
-
-             */
 
             tabRecap.append("\n");
         }
