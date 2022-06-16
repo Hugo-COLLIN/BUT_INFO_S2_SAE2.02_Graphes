@@ -7,6 +7,9 @@ import representation.GrapheListe;
 
 import java.util.Scanner;
 
+/**
+ * Tests de performances avec graphes generes automatiquement
+ */
 public class MainExperimentationGenere
 {
     private static GrapheListe g;
@@ -28,7 +31,7 @@ public class MainExperimentationGenere
         long dateInit = System.nanoTime();
 
         g = new GrapheListe();
-        g.genererGrapheV2(i);
+        g.genererGraphe(i);
 
         long dateFin = System.nanoTime();
 

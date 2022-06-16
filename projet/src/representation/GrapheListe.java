@@ -173,7 +173,7 @@ public class GrapheListe implements Graphe
      * Permet de generer un graphe fortement connecte
      * @param taille taille du graphe a generer
      */
-    public void genererGrapheV2(int taille)
+    public void genererGraphe(int taille)
     {
         for (int i = 1 ; i <= taille ; i ++)
             this.ajouterNoeud(String.valueOf(i));

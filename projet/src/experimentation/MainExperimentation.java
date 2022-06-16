@@ -10,6 +10,9 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Objects;
 
+/**
+ * Tests de performances avec graphes sous forme de fichiers
+ */
 public class MainExperimentation
 {
     private static void calculVal(StringBuilder tabRecap, Valeur v)
