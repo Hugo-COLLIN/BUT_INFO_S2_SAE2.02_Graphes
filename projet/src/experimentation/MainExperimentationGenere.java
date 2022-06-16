@@ -24,7 +24,7 @@ public class MainExperimentationGenere
         return duree;
     }
 
-    public static void geneGraphe(StringBuilder tabRecap, int i)
+    public static long geneGraphe(StringBuilder tabRecap, int i)
     {
         long dateInit = System.nanoTime();
 
@@ -35,6 +35,7 @@ public class MainExperimentationGenere
 
         long duree = dateFin - dateInit;
         tabRecap.append(duree).append("\t");
+        return duree;
     }
 
     public static void bFResolv ()
@@ -57,7 +58,7 @@ public class MainExperimentationGenere
         for (int i = 1 ; i <= nbEssais ; i ++)
         {
             tabRecap.append(i).append("\t\t\t");
-            geneGraphe(tabRecap, nbNoeuds);
+            double geneTps = geneGraphe(tabRecap, nbNoeuds);
 
             //Bellman-Ford
             BellmanFord bF = new BellmanFord();
@@ -74,6 +75,10 @@ public class MainExperimentationGenere
             double ratio = djTps / bFTps;
             moyRatio += ratio;
             tabRecap.append(ratio).append("\t\n");
+
+            double allTps = geneTps + bFTps + djTps;
+
+            System.out.println("Essai " + i + " fait en " + (allTps / 10E6) + " mili-secondes");
         }
 
         moyBF /= nbEssais;
@@ -82,6 +87,7 @@ public class MainExperimentationGenere
 
         tabRecap.append("Tot :\t\t\t---\t").append(moyBF).append("\t").append(moyDj).append("\t").append(moyRatio);
         System.out.println(tabRecap);
+
 /*
         for (int i = 1 ; i <= 1000 ; i ++)
         {
