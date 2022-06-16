@@ -5,7 +5,6 @@ import implementation.Dijkstra;
 import implementation.Valeur;
 import representation.GrapheListe;
 
-import java.io.IOException;
 import java.util.Scanner;
 
 public class MainExperimentationGenere
@@ -20,7 +19,7 @@ public class MainExperimentationGenere
         v.calculerChemin("E");
         finTps = System.nanoTime();
         long duree = finTps - debtTps;
-        tabRecap.append(duree + "\t");
+        tabRecap.append(duree).append("\t");
         return duree;
     }
 
@@ -38,14 +37,8 @@ public class MainExperimentationGenere
         return duree;
     }
 
-    public static void bFResolv ()
+    public static void main(String[] args)
     {
-        BellmanFord bF = new BellmanFord();
-        Valeur v = bF.resoudre(g, "1");
-    }
-
-    public static void main(String[] args) throws IOException {
-
         Scanner sc = new Scanner(System.in);
         System.out.print("Nombre de noeuds : ");
         int nbNoeuds = sc.nextInt();
@@ -87,40 +80,5 @@ public class MainExperimentationGenere
 
         tabRecap.append("Tot :\t\t\t---\t").append(moyBF).append("\t").append(moyDj).append("\t").append(moyRatio);
         System.out.println(tabRecap);
-
-/*
-        for (int i = 1 ; i <= 1000 ; i ++)
-        {
-            tabRecap.append(i + "\t\t\t");
-            geneGraphe(tabRecap, i);
-            //g.genererGrapheV2(i);
-
-
-            //Bellman-Ford
-            BellmanFord bF = new BellmanFord();
-            Valeur v1 = bF.resoudre(g, "1");
-            double bFTps = calculVal(tabRecap, v1);
-
-            //Dijkstra
-            Dijkstra dj = new Dijkstra();
-            Valeur v2 = dj.resoudre(g, "1");
-            double djTps = calculVal(tabRecap, v2);
-
-            double ratio = djTps / bFTps;
-
-            tabRecap.append(ratio).append("\t");
-
-            tabRecap.append("\n");
-
-            if (i % 10 >= 5)
-                if (String.valueOf(i).length() <= 2)
-                    i += 5;
-                else
-                    i += 95;
-            System.out.println(tabRecap);
-        }
-*/
-
-
     }
 }
