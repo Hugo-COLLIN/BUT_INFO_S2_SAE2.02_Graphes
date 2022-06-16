@@ -22,7 +22,7 @@ public class BellmanFord implements Algorithme
         for (String nomNoeud : g.listeNoeuds())
             if (!depart.equals(nomNoeud))
                 valeur.setValeur(nomNoeud, Double.MAX_VALUE);
-        System.out.println(valeur);
+        //System.out.println(valeur);
 
         //etapes
         boolean isPtFixe;
@@ -44,7 +44,7 @@ public class BellmanFord implements Algorithme
                     //System.out.println(i + "\t" + j + "\t" + valeur.valeur + "\t" + valeur.parent);
                 }
             }
-            System.out.println(valeur);
+            //System.out.println(valeur);
         }
         while (!isPtFixe);
 

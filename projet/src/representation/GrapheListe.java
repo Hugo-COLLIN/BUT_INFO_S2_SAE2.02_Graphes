@@ -212,6 +212,11 @@ public class GrapheListe implements Graphe {
         for (int i = 1 ; i <= taille ; i ++)
             this.ajouterNoeud(String.valueOf(i));
 
+        if (taille == 1)
+        {
+            return;
+        }
+
         boolean grapheFini = false;
         while (!grapheFini)
         {

@@ -3,29 +3,28 @@ package experimentation;
 import implementation.BellmanFord;
 import implementation.Dijkstra;
 import implementation.Valeur;
-import representation.Graphe;
 import representation.GrapheListe;
 
-import java.io.File;
 import java.io.IOException;
-import java.util.Objects;
+import java.util.Scanner;
 
 public class MainExperimentationGenere
 {
     private static GrapheListe g;
 
-    private static void calculVal(StringBuilder tabRecap, Valeur v)
+    private static long calculVal(StringBuilder tabRecap, Valeur v)
     {
         long debtTps, finTps;
 
         debtTps = System.nanoTime();
         v.calculerChemin("E");
         finTps = System.nanoTime();
-        tabRecap.append(finTps - debtTps);
-        tabRecap.append("\t");
+        long duree = finTps - debtTps;
+        tabRecap.append(duree + "\t");
+        return duree;
     }
 
-    public static void geneGraphe(int i)
+    public static void geneGraphe(StringBuilder tabRecap, int i)
     {
         long dateInit = System.nanoTime();
 
@@ -33,7 +32,9 @@ public class MainExperimentationGenere
         g.genererGrapheV2(i);
 
         long dateFin = System.nanoTime();
-        System.out.print(dateFin - dateInit + "\t");
+
+        long duree = dateFin - dateInit;
+        tabRecap.append(duree).append("\t");
     }
 
     public static void bFResolv ()
@@ -43,46 +44,49 @@ public class MainExperimentationGenere
     }
 
     public static void main(String[] args) throws IOException {
-
         /*
-        System.out.println("NbNoeuds\tTpsGene\tTpsBF\tTpsDj\tRatioAlgos");
-        for (int i = 50 ; i <= 1000 ; i += 50)
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Nombre de noeuds : ");
+        int nbNoeuds = sc.nextInt();
+        System.out.println("Nombre d'essais : ");
+        int nbEssais = sc.nextInt();
+*/
+
+        StringBuilder tabRecap = new StringBuilder("NbNoeuds\tTpsGene\tTpsBF\tTpsDj\tRatioAlgos\n");
+        for (int i = 1 ; i <= 1000 ; i ++)
         {
-            System.out.print(i + "\t");
-            geneGraphe(i);
+            tabRecap.append(i + "\t\t\t");
+            geneGraphe(tabRecap, i);
+            //g.genererGrapheV2(i);
 
-            bFResolv();
-
-            System.out.println("");
-
-
-        }
-
-         */
-
-        String pathName = "resources/graphes_exemples/";
-        File repertoire = new File(pathName);
-
-        StringBuilder tabRecap = new StringBuilder("TpsApproche\t\t\t\t\t\tbF:E\t\tDj:E\n");
-        for (File fichier : Objects.requireNonNull(repertoire.listFiles())) {
-            Graphe g = new GrapheListe(pathName + fichier.getName());
-            tabRecap.append(fichier.getName() + "\t");
 
             //Bellman-Ford
-            System.out.println("\n------------------\nBellman Ford :\n------------------");
+            //System.out.println("\n------------------\nBellman Ford :\n------------------");
             BellmanFord bF = new BellmanFord();
-            Valeur v1 = bF.resoudre(g, "A");
-            calculVal(tabRecap, v1);
+            Valeur v1 = bF.resoudre(g, "1");
+            double bFTps = calculVal(tabRecap, v1);
 
             //Dijkstra
-            System.out.println("\n------------------\nDijkstra :\n------------------");
+            //System.out.println("\n------------------\nDijkstra :\n------------------");
             Dijkstra dj = new Dijkstra();
-            Valeur v2 = dj.resoudre(g, "A");
-            calculVal(tabRecap, v2);
+            Valeur v2 = dj.resoudre(g, "1");
+            double djTps = calculVal(tabRecap, v2);
+
+            double ratio = djTps / bFTps;
+
+            tabRecap.append(ratio).append("\t");
 
             tabRecap.append("\n");
+
+            if (i % 10 >= 5)
+                if (String.valueOf(i).length() <= 2)
+                    i += 5;
+                else
+                    i += 95;
+            System.out.println(tabRecap);
         }
-        System.out.println(tabRecap);
+
+
 
     }
 }

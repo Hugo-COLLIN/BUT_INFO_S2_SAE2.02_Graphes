@@ -20,7 +20,7 @@ public class Dijkstra implements Algorithme
                 val.setValeur(nomNoeud, Double.MAX_VALUE);
                 nomsNoeudsParcours.add(nomNoeud);
             }
-        System.out.println(val);
+        //System.out.println(val);
 
         //Recherche du chemin le plus court
         double distMin, d;
@@ -51,7 +51,7 @@ public class Dijkstra implements Algorithme
             }
             //if (nomNoeudDistMin == null) break;
             arcsSuivants = g.suivants(nomNoeudDistMin);
-            System.out.println(val);
+            //System.out.println(val);
         }
         return val;
     }
