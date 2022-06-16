@@ -34,7 +34,8 @@ class DijkstraTest {
         v.setParent("E", "B");
 
         // Appel de la methode
-        Valeur test= Dijkstra.resoudre(g1, "A");
+        Dijkstra dj = new Dijkstra();
+        Valeur test= dj.resoudre(g1, "A");
         // a mettre en static?
 
         // Test de la methode
