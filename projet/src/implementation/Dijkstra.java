@@ -9,51 +9,52 @@ import java.util.List;
 public class Dijkstra implements Algorithme
 {
     public Valeur resoudre(Graphe g, String depart) {
-        Valeur val = new Valeur();
+        Valeur valeur = new Valeur();
         List<String> nomsNoeudsParcours = new ArrayList<>();
 
         //init
-        val.setValeur(depart, 0);
+        valeur.setValeur(depart, 0);
         nomsNoeudsParcours.add(depart);
         for (String nomNoeud : g.listeNoeuds())
             if (!depart.equals(nomNoeud)) {
-                val.setValeur(nomNoeud, Double.MAX_VALUE);
+                valeur.setValeur(nomNoeud, Double.MAX_VALUE);
                 nomsNoeudsParcours.add(nomNoeud);
             }
-        //System.out.println(val);
+        //System.out.println(valeur);
 
         //Recherche du chemin le plus court
         double distMin, d;
         String nomNoeudDistMin = depart;
         List<Arc> arcsSuivants = g.suivants(nomNoeudDistMin);
-        while (!nomsNoeudsParcours.isEmpty()) {
+        boolean endBoucle = false;
+
+        while (!endBoucle) {
             for (Arc arcSuivant : arcsSuivants) {
-                distMin = val.getValeur(nomNoeudDistMin) + arcSuivant.getCout();
+                distMin = valeur.getValeur(nomNoeudDistMin) + arcSuivant.getCout();
                 String nomNoeudSuivant = arcSuivant.getDest();
-                if (val.getValeur(nomNoeudSuivant) > distMin) {
-                    val.setValeur(nomNoeudSuivant, distMin);
-                    val.setParent(nomNoeudSuivant, nomNoeudDistMin);
+                if (valeur.getValeur(nomNoeudSuivant) > distMin) {
+                    valeur.setValeur(nomNoeudSuivant, distMin);
+                    valeur.setParent(nomNoeudSuivant, nomNoeudDistMin);
                 }
             }
             nomsNoeudsParcours.remove(nomNoeudDistMin);
 
 
             if (nomsNoeudsParcours.isEmpty())
-                break;
+                endBoucle = true;
             else {
                 nomNoeudDistMin = nomsNoeudsParcours.get(nomsNoeudsParcours.size() - 1);
-                d = val.getValeur(nomNoeudDistMin);
+                d = valeur.getValeur(nomNoeudDistMin);
                 for (int i = 0; i < nomsNoeudsParcours.size() - 1; i++)
-                    if (d > val.getValeur(nomsNoeudsParcours.get(i))) {
+                    if (d > valeur.getValeur(nomsNoeudsParcours.get(i))) {
                         nomNoeudDistMin = nomsNoeudsParcours.get(i);
-                        d = val.getValeur(nomNoeudDistMin);
+                        d = valeur.getValeur(nomNoeudDistMin);
                     }
             }
-            //if (nomNoeudDistMin == null) break;
             arcsSuivants = g.suivants(nomNoeudDistMin);
-            //System.out.println(val);
+            //System.out.println(valeur);
         }
-        return val;
+        return valeur;
     }
 
 
