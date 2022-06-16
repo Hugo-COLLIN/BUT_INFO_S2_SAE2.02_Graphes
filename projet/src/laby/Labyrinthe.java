@@ -190,7 +190,12 @@ public class Labyrinthe {
         return this.murs[x][y];
     }
 
+
     //Methode ajoutee
+    /**
+     * Methode permettant de generer un graphe a partir de l'objet labyrinthe
+     * @return un objet GrapheListe representant le labyrinthe
+     */
     public GrapheListe genererGraphe ()
     {
         GrapheListe g = new GrapheListe();
@@ -211,6 +216,12 @@ public class Labyrinthe {
         return g;
     }
 
+    /**
+     * Permet de creer le nom d'un noeud
+     * @param x position x dans le labyrinthe
+     * @param y position y dans le labyrinthe
+     * @return un objet String correspondant au nom du noeud correspondant a la case (x,y) du labyrinthe
+     */
     private String creerNomNoeud (int x, int y)
     {
         return "\"(" + x + "," + y + ")\"";
