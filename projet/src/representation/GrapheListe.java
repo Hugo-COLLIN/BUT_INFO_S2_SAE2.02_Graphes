@@ -21,9 +21,6 @@ public class GrapheListe implements Graphe {
      */
     private List<Noeud> ensNoeuds;
 
-    private static final String [] LISTE_NOMS_NOEUDS =
-            {"A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"};
-
     /**
      * Constructeur qui cree un objet representation.GrapheListe avec ses attributs initialises
      * comme listes vides
