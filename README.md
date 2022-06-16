@@ -1,3 +1,1 @@
-# Hugo COLLIN
-# Solène FAURE
-# S2B
+# Hugo COLLIN, Solène FAURE, S2B
