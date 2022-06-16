@@ -6,6 +6,7 @@ import representation.Arc;
 import representation.GrapheListe;
 import representation.Noeud;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -212,6 +213,30 @@ class GrapheListeTest {
 
         //Test
         assertEquals(attendu, res, "doivent etre egaux");
+    }
+
+    @Test
+    void lireFichier_test () throws IOException {
+        // init
+        GrapheListe g = new GrapheListe();
+        g.ajouterArc("1", "2", 18);
+        g.ajouterArc("2", "1", 12);
+        g.ajouterArc("2", "3", 13);
+        g.ajouterArc("3", "2", 20);
+
+        // methode
+        GrapheListe res = new GrapheListe();
+        res.lireFichier("resources/graphes_exemples/Graphe4.txt");
+
+        // Test
+        assertEquals(g.suivants(g.listeNoeuds().get(0)).get(0).getDest(), res.suivants(res.listeNoeuds().get(0)).get(0).getDest(), "doivent avoir la meme destination");
+        assertEquals(g.suivants(g.listeNoeuds().get(0)).get(0).getCout(), res.suivants(res.listeNoeuds().get(0)).get(0).getCout(), "doivent avoir le meme cout");
+        assertEquals(g.suivants(g.listeNoeuds().get(1)).get(0).getDest(), res.suivants(res.listeNoeuds().get(1)).get(0).getDest(), "doivent avoir la meme destination");
+        assertEquals(g.suivants(g.listeNoeuds().get(1)).get(0).getCout(), res.suivants(res.listeNoeuds().get(1)).get(0).getCout(), "doivent avoir le meme cout");
+        assertEquals(g.suivants(g.listeNoeuds().get(1)).get(1).getDest(), res.suivants(res.listeNoeuds().get(1)).get(1).getDest(), "doivent avoir la meme destination");
+        assertEquals(g.suivants(g.listeNoeuds().get(1)).get(1).getCout(), res.suivants(res.listeNoeuds().get(1)).get(1).getCout(), "doivent avoir le meme cout");
+        assertEquals(g.suivants(g.listeNoeuds().get(2)).get(0).getDest(), res.suivants(res.listeNoeuds().get(2)).get(0).getDest(), "doivent avoir la meme destination");
+        assertEquals(g.suivants(g.listeNoeuds().get(2)).get(0).getCout(), res.suivants(res.listeNoeuds().get(2)).get(0).getCout(), "doivent avoir le meme cout");
     }
 
 
