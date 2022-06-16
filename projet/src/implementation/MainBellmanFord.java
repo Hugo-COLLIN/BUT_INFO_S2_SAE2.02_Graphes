@@ -4,7 +4,7 @@ import representation.GrapheListe;
 
 import java.util.List;
 
-public class Main
+public class MainBellmanFord
 {
     public static void main(String[] args) {
         GrapheListe g = new GrapheListe();

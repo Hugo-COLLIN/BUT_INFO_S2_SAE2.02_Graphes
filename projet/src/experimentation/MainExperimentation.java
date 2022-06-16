@@ -1,3 +1,5 @@
+package experimentation;
+
 import implementation.BellmanFord;
 import implementation.Dijkstra;
 import implementation.Valeur;

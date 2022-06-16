@@ -1,8 +1,10 @@
+package experimentation;
+
 import implementation.BellmanFord;
 import implementation.Valeur;
 import representation.GrapheListe;
 
-public class MainGenerationExperimentation
+public class MainExperimentationGenere
 {
     private static GrapheListe g;
     public static void geneGraphe(int i)
