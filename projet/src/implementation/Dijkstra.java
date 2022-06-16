@@ -6,6 +6,9 @@ import representation.Graphe;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Implementation de l'algorithme de Dijkstra
+ */
 public class Dijkstra implements Algorithme
 {
     /**

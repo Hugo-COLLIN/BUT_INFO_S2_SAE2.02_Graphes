@@ -2,6 +2,9 @@ package implementation;
 
 import representation.Graphe;
 
+/**
+ * Implementation de l'algorithme de point fixe, aussi appele de Bellman-Ford
+ */
 public class BellmanFord implements Algorithme
 {
     /**
