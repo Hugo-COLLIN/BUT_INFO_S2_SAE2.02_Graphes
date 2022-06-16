@@ -9,6 +9,9 @@ import representation.GrapheListe;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class DijkstraTest {
+    /**
+     * Classe de tests destinee a verifier si l'algorithme de Dijkstra code est operationnel
+     */
 
     GrapheListe g1;
 
@@ -24,6 +27,11 @@ class DijkstraTest {
         g1.ajouterArc("D", "C", 10);
         g1.ajouterArc("E", "D", 43);
     }
+
+    /**
+     * Test verifiant si l algorithme trouve bien le chemin minimal dans un graphe
+     * Valeur v cree correspond aux L(X) calcules par l utilisation de l algorithme de Dijkstra
+     */
 
     @Test
     void resoudre_Test()

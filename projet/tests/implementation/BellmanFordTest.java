@@ -10,6 +10,9 @@ import representation.GrapheListe;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class BellmanFordTest {
+    /**
+     * Classe de tests destinee a verifier si l'algorithme de Bellman Ford code est operationnel
+     */
 
     GrapheListe g1;
 
@@ -25,6 +28,11 @@ class BellmanFordTest {
         g1.ajouterArc("D", "C", 10);
         g1.ajouterArc("E", "D", 43);
     }
+
+    /**
+     * Test verifiant si l algorithme trouve bien le chemin minimal dans un graphe
+     * Valeur v cree correspond aux L(X) calcules par la methode de point fixe
+     */
 
     @Test
     void resoudre_Test()
