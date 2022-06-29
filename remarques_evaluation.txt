@@ -1,0 +1,16 @@
+(1) Bellmanford 
+- condition test de depart doit être hors de la boucle.
+- vous faites des appels dans des appels => preferez définir des variables intermédiaires. 
+(par exemple, pour g.suivants(g.listeNoeuds().get(i)).size(), stocker String noeudCourant = g.listeNoeuds().get(i) sinon plus vous écrivez de code, plus il y a des chances d'avoir une erreur).
+
+(2) Dijsktra
+- test de depart pas dans la boucle d'inialisation (mais aprés la boucle).
+- garder les commentaires à côté des différentes lignes de code (et pas en decalé comme vous avez fait).
+
+(3) votre évaluation n'est pas claire
+- vous dites que Dijkstra est mieux, mais ce n'est pas flagrant sur les graphes fournis
+- Que se passe-t-il avec le graphe 502 ? c'est étrange en terme de résultat.
+- votre génération de graphes et vos évaluations ensuite semblent plus pertinentes.
+- il faudrait tester avec plus de noeuds que juste 100.
+
+
